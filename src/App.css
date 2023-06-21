@@ -1,0 +1,52 @@
+html,
+body,
+#root
+{
+    
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:black;
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: 'Italiana', serif;
+  color: #fff;
+  margin-bottom: 32px !important;
+}
+
+h1 {
+  font-size: 60px !important;
+  color: red;
+}
+
+h2 {
+  font-size: 40px !important;
+  color: #000;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.8em;
+}
+
+.header {
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(79, 22, 132, 0.83);
+  }
+
+/* footer */
+.footer {
+  
+  justify-content: space-between;
+  align-items: center;
+  background: blueviolet;
+}
