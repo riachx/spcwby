@@ -21,17 +21,18 @@ h1,h2,h3,h4,h5 {
 
 h1 {
   font-size: 60px !important;
-  color: red;
+  color: white;
+  font-family: 'Montserrat';
 }
 
 h2 {
   font-size: 40px !important;
-  color: #000;
+  color: white;
 }
 
 p {
   font-family: 'Roboto', sans-serif;
-  color: #000;
+  color:white;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.8em;
