@@ -69,6 +69,7 @@ p {
   position:fixed;
   z-index:20;
   
+  
 }
 
 .nav-links {
@@ -105,7 +106,9 @@ p {
   align-items: center;
   background: black;
 }
-
+body{
+  background-image: url("./background.png");
+}
 
 /* stretch text */
 span.stretch {
