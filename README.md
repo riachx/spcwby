@@ -1,5 +1,5 @@
 # Space Cowboy Website 
-This project was made with React Three Fiber (React renderer for Three.js)
+This project was made with React Three Fiber.
 
 ## Using this repo
 To use this repo, run the following commands inside the repo directory: \
