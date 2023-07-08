@@ -4,13 +4,14 @@ import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fibe
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import { Environment, useTexture, Effects } from "@react-three/drei"
-import { Html, Stars, OrbitControls } from "@react-three/drei";
+import { Html, Stars, OrbitControls,MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from 'three';
 import { useControls } from 'leva';
-import { SelectiveBloom, Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+import { SelectiveBloom,HueSaturation, Bloom, BrightnessContrast, DepthOfField, EffectComposer,LUT, Noise, Vignette } from '@react-three/postprocessing'
 import { BlurPass, Resizer, KernelSize } from 'postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
-import {TextureLoader} from 'three';
+import {Color, TextureLoader} from 'three';
+import { LUTCubeLoader } from 'postprocessing'
 
 extend({ OrbitControls, UnrealBloomPass });
 /*
@@ -34,17 +35,26 @@ function Sphere2() {
   );
 }*/
 
+
 function Shape({ children, color, ...props }) {
+  const texture2 = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
   return (
     <mesh {...props} >
       {children}
-      
-      <meshBasicMaterial color={color} toneMapped={false} />
+      <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
     </mesh>
   )
 }
 
-
+function Shapepink({ children, color, ...props }) {
+  const texture2 = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
+  return (
+    <mesh {...props} >
+      {children}
+      <meshStandardMaterial transparent={true} opacity={0.5} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
+    </mesh>
+  )
+}
 
 function App() {
 
@@ -62,21 +72,15 @@ const reflight2 = React.useRef();*/}
     y: THREE.MathUtils.randFloatSpread(10),
     z: THREE.MathUtils.randFloatSpread(20),
 
-    
-    
   }));
-  const texture = useLoader(TextureLoader, 'https://i.imgur.com/n4tIlbN.png');
-  
-
- 
+  const texture = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
+  //const texture2 = useLoader(LUTCubeLoader, "./assets/F-6800-STD.cube");
 
   return (
     <Canvas gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}>
       
       <Environment files="https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/hdris/noon-grass/noon_grass_1k.hdr"  />
       
-      
-
       {/* outer sphere code 
       <mesh ref={refSphere}>
       <sphereBufferGeometry args={[2.2, 20, 25]} />
@@ -88,7 +92,6 @@ const reflight2 = React.useRef();*/}
       <sphereBufferGeometry args={[1.4, 20, 25]} />
       <meshStandardMaterial color="red" roughness='0' envMapIntensity={0.5} />
       </mesh>*/}
-
 
       <OrbitControls autoRotate enablePan={false} enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
       
@@ -102,18 +105,36 @@ const reflight2 = React.useRef();*/}
       ))}
     </group>
     
-    <Shape color={[255, 82, 159]} position={[0, 0, 0]}>
-       <sphereBufferGeometry args={[2.2, 20, 25]}/>
-      </Shape>
-
+     {/*allows for sphere to glow
+      <ambientLight position={[2,3,2]}>
+      </ambientLight>
+      <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+      <pointLight position={[-10, -10, -10]} />*/}
+      
       <mesh position={[0, 0, 0]}>
       <sphereBufferGeometry args={[6, 20, 25]}/>
       <meshBasicMaterial map={texture} side={THREE.BackSide}/>
       </mesh>
-    
-      <Effects >
-        <unrealBloomPass threshold={1} strength={1} radius={0.02} />
-      </Effects >
+
+      <Shapepink color={[0,5,0]} scale={[0.5,0.5,0.5]} position={[0, 0, 0]} >
+       <sphereBufferGeometry  args={[2.1, 20, 25]}/>
+      </Shapepink>
+
+      <Shape color={[5,0,0]} position={[0, 0, 0]} >
+       <sphereBufferGeometry  args={[2.1, 20, 25]}/>
+      </Shape>
+
+      
+      
+      <EffectComposer disableNormalPass>
+        <Bloom mipmapBlur radius={0.6} luminanceThreshold={1} />
+        <Vignette eskil={false} offset={0.1} darkness={0.4} />
+        <HueSaturation hue={4.191} />
+        <BrightnessContrast brightness={-0.07}/>
+        
+        {/*<LUT lut={texture2} />*/}
+      </EffectComposer>
       
     </Canvas>
   );
