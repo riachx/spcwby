@@ -1,16 +1,16 @@
 import './App.css';
-import React, {useEffect} from 'react';
+import React, {useEffect,useRef} from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
-import { Environment, useTexture, Effects } from "@react-three/drei"
+import { Environment, useTexture, Effects, useScroll, Scroll, ScrollControls } from "@react-three/drei"
 import { Html, Stars, OrbitControls,MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from 'three';
 import { useControls } from 'leva';
 import { SelectiveBloom,HueSaturation, Bloom, BrightnessContrast, DepthOfField, EffectComposer,LUT, Noise, Vignette } from '@react-three/postprocessing'
 import { BlurPass, Resizer, KernelSize } from 'postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
-import {Color, TextureLoader} from 'three';
+import {Camera, Color, TextureLoader} from 'three';
 import { LUTCubeLoader } from 'postprocessing'
 
 extend({ OrbitControls, UnrealBloomPass });
@@ -36,12 +36,15 @@ function Sphere2() {
 }*/
 
 
+
+
 function Shape({ children, color, ...props }) {
-  const texture2 = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
+  
   return (
+    
     <mesh {...props} >
       {children}
-      <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
+      <meshStandardMaterial transparent={true} opacity={0.5} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
     </mesh>
   )
 }
@@ -51,7 +54,7 @@ function Shapepink({ children, color, ...props }) {
   return (
     <mesh {...props} >
       {children}
-      <meshStandardMaterial transparent={true} opacity={0.5} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
+      <meshStandardMaterial  toneMapped={false} emissive={"red"} emissiveIntensity={1} color={color} />
     </mesh>
   )
 }
@@ -64,6 +67,7 @@ function App() {
 
 const reflight2 = React.useRef();*/}
   const groupRef = React.useRef();
+  const groupRef2 = React.useRef();
   const starCount = 500;
 
   // Generate random positions for stars
@@ -73,9 +77,16 @@ const reflight2 = React.useRef();*/}
     z: THREE.MathUtils.randFloatSpread(20),
 
   }));
-  const texture = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
-  //const texture2 = useLoader(LUTCubeLoader, "./assets/F-6800-STD.cube");
 
+  const positions_lower = [...Array(starCount)].map(() => ({
+    x: THREE.MathUtils.randFloatSpread(40),
+    y: THREE.MathUtils.randFloatSpread(40),
+    z: THREE.MathUtils.randFloatSpread(40),
+
+  }));
+  const texture = useLoader(TextureLoader, 'https://i.imgur.com/TUR0W67.png');
+  //const texture2 = useLoader(LUTCubeLoader, "./assets/F-6800-STD.cube");
+  
   return (
     <Canvas gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}>
       
@@ -95,9 +106,39 @@ const reflight2 = React.useRef();*/}
 
       <OrbitControls autoRotate enablePan={false} enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
       
+      <ScrollControls damping={2} pages={3}>
+      <Scroll>
+
       {/* star field */}
-      <group ref={groupRef}>
+      <group ref={groupRef} >
       {positions.map((position, index) => (
+        <mesh key={index} position={[position.x, position.y, position.z]}>
+          <sphereBufferGeometry args={[0.005, 5, 5]} />
+          <meshBasicMaterial color="#ffffff" />
+        </mesh>
+      ))}
+    </group>
+      
+    
+      <mesh position={[0, 0, 0]}>
+      <sphereBufferGeometry args={[6, 20, 20]}/>
+      <meshBasicMaterial map={texture} side={THREE.BackSide}/>
+      </mesh>
+
+     
+      <mesh rotation={[11,0,0]} position={[0,-5.1,0]}>
+        <torusBufferGeometry args={[4.2, 0.6, 16, 100]}/>
+        <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
+      </mesh>
+
+      <mesh rotation={[11,0,0]} position={[0,-5.4,0]}>
+        <torusBufferGeometry args={[4, 0.1, 16, 100]}/>
+        <meshStandardMaterial  toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0,30,0]} />
+      </mesh>
+
+      {/* star field */}
+      <group ref={groupRef2} position={[0,-10,10]}>
+      {positions_lower.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
           <sphereBufferGeometry args={[0.007, 5, 5]} />
           <meshBasicMaterial color="#ffffff" />
@@ -112,23 +153,21 @@ const reflight2 = React.useRef();*/}
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />*/}
       
-      <mesh position={[0, 0, 0]}>
-      <sphereBufferGeometry args={[6, 20, 25]}/>
-      <meshBasicMaterial map={texture} side={THREE.BackSide}/>
-      </mesh>
-
-      <Shapepink color={[0,5,0]} scale={[0.5,0.5,0.5]} position={[0, 0, 0]} >
-       <sphereBufferGeometry  args={[2.1, 20, 25]}/>
+      <Shapepink color={[100,100,0]} position={[0, 0, 0]} >
+       <sphereBufferGeometry args={[0.6, 20, 15]}/>
       </Shapepink>
 
+      
       <Shape color={[5,0,0]} position={[0, 0, 0]} >
-       <sphereBufferGeometry  args={[2.1, 20, 25]}/>
+       <sphereBufferGeometry  args={[2.1, 20, 25]} />
       </Shape>
+      </Scroll>
+      </ScrollControls>
 
       
       
       <EffectComposer disableNormalPass>
-        <Bloom mipmapBlur radius={0.6} luminanceThreshold={1} />
+        <Bloom mipmapBlur radius={0.75} luminanceThreshold={1} />
         <Vignette eskil={false} offset={0.1} darkness={0.4} />
         <HueSaturation hue={4.191} />
         <BrightnessContrast brightness={-0.07}/>
