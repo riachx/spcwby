@@ -12,6 +12,8 @@ import { BlurPass, Resizer, KernelSize } from 'postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
 import {Camera, Color, TextureLoader} from 'three';
 import { LUTCubeLoader } from 'postprocessing'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 extend({ OrbitControls, UnrealBloomPass });
 /*
@@ -54,10 +56,45 @@ function Shapepink({ children, color, ...props }) {
   return (
     <mesh {...props} >
       {children}
-      <meshStandardMaterial  toneMapped={false} emissive={"red"} emissiveIntensity={1} color={color} />
+      <meshStandardMaterial toneMapped={false} emissive={"red"} emissiveIntensity={1} color={color} />
     </mesh>
   )
 }
+
+const Model2 = () => {
+  const obj = useLoader(GLTFLoader, './models/spcwbymodel.glb')
+  const modelRef = useRef(); // Create a reference to the 3D object
+
+  // Use the useFrame hook to update the rotation
+  useFrame(({ camera }) => {
+    if (modelRef.current) {
+      // Match the X-axis rotation of the object with the camera's X-axis rotation
+      modelRef.current.rotation.z = camera.rotation.z;
+      modelRef.current.rotation.y = camera.rotation.y;
+      modelRef.current.rotation.x = camera.rotation.x;
+      
+      
+    }
+  });
+
+  return (
+    <group ref={modelRef}>
+      <primitive object={obj.scene} position={[0.1, 0, 2.2]} scale={0.3} />
+      <meshStandardMaterial attach="material" args={[{ color: 0xffffff }]} />
+    </group>
+  );
+};
+
+const Model = () => {
+  const obj = useLoader(OBJLoader, "./models/object.obj")
+  return (
+      <>
+   
+          <primitive object={obj.scene} position={[0, 1, 0]} children-0-castShadow={true} />
+          
+      </>
+  );
+};
 
 function App() {
 
@@ -66,6 +103,9 @@ function App() {
   const refSphere2 = React.useRef();
 
 const reflight2 = React.useRef();*/}
+  const objModel = useLoader(OBJLoader, '/Users/riachockalingam/Documents/spcwby/gitrepo/spcwby/src/maya2sketchfab.obj'); // Update the path
+
+
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
   const starCount = 500;
@@ -85,8 +125,9 @@ const reflight2 = React.useRef();*/}
 
   }));
   const texture = useLoader(TextureLoader, 'https://i.imgur.com/TUR0W67.png');
+  //const fbx = useLoader(FBXLoader, "Car.fbx");
   //const texture2 = useLoader(LUTCubeLoader, "./assets/F-6800-STD.cube");
-  
+  //const fbxmodel = useLoader(FBXLoader, 'src/spacecowboy.fbx')
   return (
     <Canvas gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}>
       
@@ -108,7 +149,7 @@ const reflight2 = React.useRef();*/}
       
       <ScrollControls damping={2} pages={3}>
       <Scroll>
-
+      
       {/* star field */}
       <group ref={groupRef} >
       {positions.map((position, index) => (
@@ -118,24 +159,23 @@ const reflight2 = React.useRef();*/}
         </mesh>
       ))}
     </group>
-      
-    
-      <mesh position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0]}>
       <sphereBufferGeometry args={[6, 20, 20]}/>
       <meshBasicMaterial map={texture} side={THREE.BackSide}/>
       </mesh>
-
      
-      <mesh rotation={[11,0,0]} position={[0,-5.1,0]}>
-        <torusBufferGeometry args={[4.2, 0.6, 16, 100]}/>
-        <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
-      </mesh>
-
       <mesh rotation={[11,0,0]} position={[0,-5.4,0]}>
         <torusBufferGeometry args={[4, 0.1, 16, 100]}/>
         <meshStandardMaterial  toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0,30,0]} />
       </mesh>
-
+      
+      <mesh rotation={[11,0,0]} position={[0,-5.1,0]}>
+        <torusBufferGeometry args={[4.2, 0.6, 16, 100]}/>
+        <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
+      </mesh>
+      
+      <primitive object={objModel} />
+        
       {/* star field */}
       <group ref={groupRef2} position={[0,-10,10]}>
       {positions_lower.map((position, index) => (
@@ -145,7 +185,7 @@ const reflight2 = React.useRef();*/}
         </mesh>
       ))}
     </group>
-    
+    <Model2/>
      {/*allows for sphere to glow
       <ambientLight position={[2,3,2]}>
       </ambientLight>
@@ -156,7 +196,8 @@ const reflight2 = React.useRef();*/}
       <Shapepink color={[100,100,0]} position={[0, 0, 0]} >
        <sphereBufferGeometry args={[0.6, 20, 15]}/>
       </Shapepink>
-
+      
+      <ambientLight intensity={0.2} />
       
       <Shape color={[5,0,0]} position={[0, 0, 0]} >
        <sphereBufferGeometry  args={[2.1, 20, 25]} />
@@ -164,7 +205,6 @@ const reflight2 = React.useRef();*/}
       </Scroll>
       </ScrollControls>
 
-      
       
       <EffectComposer disableNormalPass>
         <Bloom mipmapBlur radius={0.75} luminanceThreshold={1} />
