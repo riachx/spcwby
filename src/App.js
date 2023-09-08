@@ -1,12 +1,13 @@
 import './App.css';
-import React, {useEffect,useRef} from 'react';
+import React, {Suspense, useState, useEffect,useRef} from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
-import { Environment, useTexture, Effects, useScroll, Scroll, ScrollControls } from "@react-three/drei"
+import { Environment, Preload, useTexture, Effects, useScroll, Image as ImageImpl, Scroll, ScrollControls } from "@react-three/drei"
 import { Html, Stars, OrbitControls,MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from 'three';
 import { useControls } from 'leva';
+
 import { SelectiveBloom,HueSaturation, Bloom, BrightnessContrast, DepthOfField, EffectComposer,LUT, Noise, Vignette } from '@react-three/postprocessing'
 import { BlurPass, Resizer, KernelSize } from 'postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
@@ -15,7 +16,60 @@ import { LUTCubeLoader } from 'postprocessing'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
+
 extend({ OrbitControls, UnrealBloomPass });
+
+function Image({ c = new THREE.Color(), ...props }) {
+  const ref = useRef()
+  const [hovered, hover] = useState(false)
+  useFrame(() => {
+    ref.current.material.color.lerp(c.set(hovered ? 'white' : '#ccc'), hovered ? 0.4 : 0.05)
+  })
+  return <ImageImpl ref={ref} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)} {...props} />
+}
+
+function Images() {
+  const { width, height, camera } = useThree((state) => state.viewport)
+  const data = useScroll()
+  const group = useRef()
+  
+
+  useFrame(({camera}) => {
+    
+
+    if (group.current) {
+      // Match the X-axis rotation of the object with the camera's X-axis rotation
+      group.current.rotation.z = camera.rotation.z;
+      group.current.rotation.y = camera.rotation.y;
+      group.current.rotation.x = camera.rotation.x;
+      
+    }
+
+    group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3
+    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3
+    group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 3
+    group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2
+    group.current.children[4].material.zoom = 1 + data.range(1.25 / 3, 1 / 3) / 1
+    group.current.children[5].material.zoom = 1 + data.range(1.8 / 3, 1 / 3) / 3
+    group.current.children[5].material.grayscale = 1 - data.range(1.6 / 3, 1 / 3)
+    group.current.children[6].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
+
+    
+  })
+
+  return (
+    <group ref={group}>
+      <Image position={[-2, -17, 0]} scale={[4, height, 1]} url="./photos/photo1.jpg" />
+      <Image position={[2, -19, -2]} scale={3} url="./photos/photo2.png" />
+      <Image position={[2, -height-18, 1]} scale={[2, 3, 1]} url="./photos/photo2.png" />
+      <Image position={[-3, -height-27, -5]} scale={[width, height*3, 1]} url="./photos/photo2.png" />
+      <Image position={[0.75, -height, -3.5]} scale={1.5} url="./photos/photo5.jpg" />
+      <Image position={[0, -height * 1.5, 2]} scale={[1.5, 3, 1]} url="./photos/photo5.jpg" />
+      <Image position={[0, -height * 2 - height / 4, 0]} scale={[width, height / 1, 1]} url="./photos/photo5.jpg" />
+    </group>
+  )
+}
+
 /*
 function Sphere() {
   const ref = React.useRef();
@@ -37,9 +91,6 @@ function Sphere2() {
   );
 }*/
 
-
-
-
 function Shape({ children, color, ...props }) {
   
   return (
@@ -51,6 +102,7 @@ function Shape({ children, color, ...props }) {
   )
 }
 
+
 function Shapepink({ children, color, ...props }) {
   const texture2 = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
   return (
@@ -61,7 +113,7 @@ function Shapepink({ children, color, ...props }) {
   )
 }
 
-const Model2 = () => {
+const SpcwbyModel = () => {
   const obj = useLoader(GLTFLoader, './models/spcwbymodel.glb')
   const modelRef = useRef(); // Create a reference to the 3D object
 
@@ -73,38 +125,26 @@ const Model2 = () => {
       modelRef.current.rotation.y = camera.rotation.y;
       modelRef.current.rotation.x = camera.rotation.x;
       
-      
     }
   });
 
   return (
     <group ref={modelRef}>
-      <primitive object={obj.scene} position={[0.1, 0, 2.2]} scale={0.3} />
-      <meshStandardMaterial attach="material" args={[{ color: 0xffffff }]} />
+      <primitive object={obj.scene} position={[0.1, 0, 2.3]} scale={0.3} />
+      <meshStandardMaterial attach="material" args={[{ color: 0xffffff, emissive: "white", emissiveIntensity:5}]} />
     </group>
   );
 };
 
-const Model = () => {
-  const obj = useLoader(OBJLoader, "./models/object.obj")
-  return (
-      <>
-   
-          <primitive object={obj.scene} position={[0, 1, 0]} children-0-castShadow={true} />
-          
-      </>
-  );
-};
+
 
 function App() {
 
-  {/*const reflight = React.useRef();
-  const refSphere = React.useRef();
-  const refSphere2 = React.useRef();
 
-const reflight2 = React.useRef();*/}
+  
   const objModel = useLoader(OBJLoader, '/Users/riachockalingam/Documents/spcwby/gitrepo/spcwby/src/maya2sketchfab.obj'); // Update the path
 
+  
 
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
@@ -133,21 +173,9 @@ const reflight2 = React.useRef();*/}
       
       <Environment files="https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/hdris/noon-grass/noon_grass_1k.hdr"  />
       
-      {/* outer sphere code 
-      <mesh ref={refSphere}>
-      <sphereBufferGeometry args={[2.2, 20, 25]} />
-      <meshStandardMaterial color="#43539f" roughness='0' envMapIntensity={3}  emissive={true} emissiveIntensity="50"/>
-      </mesh>*/}
-
-      {/*inner sphere code
-      <mesh ref={refSphere2}>
-      <sphereBufferGeometry args={[1.4, 20, 25]} />
-      <meshStandardMaterial color="red" roughness='0' envMapIntensity={0.5} />
-      </mesh>*/}
 
       <OrbitControls autoRotate enablePan={false} enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
-      
-      <ScrollControls damping={2} pages={3}>
+      <ScrollControls damping={2} pages={5}>
       <Scroll>
       
       {/* star field */}
@@ -159,6 +187,7 @@ const reflight2 = React.useRef();*/}
         </mesh>
       ))}
     </group>
+
     <mesh position={[0, 0, 0]}>
       <sphereBufferGeometry args={[6, 20, 20]}/>
       <meshBasicMaterial map={texture} side={THREE.BackSide}/>
@@ -185,7 +214,7 @@ const reflight2 = React.useRef();*/}
         </mesh>
       ))}
     </group>
-    <Model2/>
+    <SpcwbyModel/>
      {/*allows for sphere to glow
       <ambientLight position={[2,3,2]}>
       </ambientLight>
@@ -202,15 +231,16 @@ const reflight2 = React.useRef();*/}
       <Shape color={[5,0,0]} position={[0, 0, 0]} >
        <sphereBufferGeometry  args={[2.1, 20, 25]} />
       </Shape>
+      <Images />
       </Scroll>
       </ScrollControls>
 
       
       <EffectComposer disableNormalPass>
         <Bloom mipmapBlur radius={0.75} luminanceThreshold={1} />
-        <Vignette eskil={false} offset={0.1} darkness={0.4} />
+        <Vignette eskil={false} offset={0.1} darkness={0.5} />
         <HueSaturation hue={4.191} />
-        <BrightnessContrast brightness={-0.07}/>
+        <BrightnessContrast brightness={-0.1}/>
         
         {/*<LUT lut={texture2} />*/}
       </EffectComposer>
