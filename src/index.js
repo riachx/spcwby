@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './components/Body';
 import Footer from './components/Footer';
 import HomeGallery from './components/HomeGallery';
 import NavBar from './components/NavBar';
