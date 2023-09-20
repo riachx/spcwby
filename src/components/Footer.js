@@ -2,7 +2,6 @@ import React from 'react';
 
 const Footer = () => {
   const footerStyle = {
-    
     fontFamily: 'Roboto, sans-serif',
     fontSize: '20px',
     backgroundColor: '#000',

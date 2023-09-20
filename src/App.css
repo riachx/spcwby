@@ -10,7 +10,8 @@ body,
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    background-image: url("./background.png");
+    /*background-image: url("./background.png");*/
+    background-color:black;
     background-size: 100%;
     /*background: radial-gradient(at 50% 100%, #2727c3 40%, #06068f 80%, #020263 100%);*/
 }
@@ -51,13 +52,6 @@ a{
   float:right;
 }
 
-p {
-  font-family: 'Roboto', sans-serif;
-  color:white;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 1.8em;
-}
 
 .navbar {
   display: flex;
@@ -78,18 +72,19 @@ p {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 5%;
+  margin-right: 8%;
+  transform: scaleX(1.4);
 
 }
 
 .nav-links li {
-  margin-left: 35%;
+  margin-left: 25%;
   
 }
 
 .nav-links a {
   color: #fff;
-  font-size: 22px;
+  font-size: 17px;
   text-decoration: none;
   
 
@@ -100,6 +95,62 @@ p {
   
 }
 
+.left-text {
+
+  font-family: 'Roboto', sans-serif;
+  position: absolute; /* Position the element absolutely within its containing parent */
+  left: 10%; /* Adjust the left distance from the left edge of the screen */
+  padding:3%; /* Adjust the top distance from the top edge of the screen */
+  padding-top:70px;
+  font-size: 10px; /* Adjust the font size as needed */
+  color: #ffffff; /* Text color */
+  font-weight: lighter; /* Make the text bold */
+  transform: scaleX(1.5);
+  opacity:80%;
+  line-height: 1.3;
+}
+
+.low-opacity {
+  color: white;
+  opacity: 40%;
+}
+
+.line{
+  font-family: 'Roboto', sans-serif;
+  position: relative; /* Position the element absolutely within its containing parent */
+  top:30px;
+  left:-10px;
+  font-size: 10px; 
+  color: #ffffff; 
+  font-weight: bold;
+  transform: scaleY(5);
+  opacity:80%;
+}
+
+.photo {
+  display: inline-block;
+  margin: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Style the images */
+.photo img {
+  max-width: 100%;
+  height: auto;
+}
+.photo {
+  display: inline-block;
+  margin: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Style the images */
+.photo img {
+  max-width: 100%;
+  height: auto;
+}
 /* footer */
 .footer {
   justify-content: space-between;
@@ -110,6 +161,11 @@ body{
   background-image: url("./background.png");
 }
 
+.bodySection{
+  height:100%;
+  width:100%
+
+}
 /* stretch text */
 span.stretch {
   display:inline-block;
