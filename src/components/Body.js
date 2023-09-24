@@ -157,10 +157,6 @@ const SpcwbyModel = () => {
 
 function Body() {
 
-
-  
-  const objModel = useLoader(OBJLoader, '/Users/riachockalingam/Documents/spcwby/gitrepo/spcwby/src/maya2sketchfab.obj'); // Update the path
-
   const arrow = {
     position: 'fixed',
     color: 'white',
@@ -227,7 +223,6 @@ function Body() {
         <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
       </mesh>
       
-      <primitive object={objModel} />
         
       {/* star field */}
       <group ref={groupRef2} position={[0,-10,10]}>
