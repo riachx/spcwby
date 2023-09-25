@@ -7,8 +7,8 @@ function Image({ c = new THREE.Color(), ...props }) {
     const ref = useRef()
     return <ImageImpl ref={ref} {...props} />
   }
-  
-function Images() {
+
+  function Images() {
     const { width, height } = useThree((state) => state.viewport)
     const data = useScroll()
     const group = useRef()
@@ -31,17 +31,17 @@ function Images() {
     })
     return (
       <group ref={group}>
-        <Image position={[0, -height * 1.5+12.1, 0]} scale={[width, 8, 1]} url="https://i.imgur.com/5EXqErc.jpg" />
-        <Image position={[0, -12, 1]} scale={[8, height, 1]} url="https://i.imgur.com/dvrTZNo.jpg" />
-        <Image position={[2, -19, 0]} scale={[8,4,1]} url="https://i.imgur.com/iMxY2cw.jpg" />
-        <Image position={[-2, -height, 2]} scale={[1.5, height/2, 1]} url="https://i.imgur.com/pGasRlB.jpg" />
-        <Image position={[0, -height, 2.3]} scale={[1.5, height/2, 1]} url="https://i.imgur.com/eMZrowv.jpg" />
-        <Image position={[2, -height, 2.6]} scale={[1.5,height/2,1]} url="https://i.imgur.com/awMbA3O.jpg" />
+        <Image position={[0, -height * 1.5+12.1, 0]} scale={[width, 8, 1]} url="https://i.imgur.com/oceMF7S.jpg" />
+        <Image position={[0, -12, 1]} scale={[8, height, 1]} url="https://i.imgur.com/om2kvnR.jpg" />
+        <Image position={[2, -19, 0]} scale={[8,4,1]} url="https://i.imgur.com/F6D8rB4.jpg" />
+        <Image position={[-2, -height, 2]} scale={[1.5, height/2, 1]} url="https://i.imgur.com/R9O1MVg.jpg" />
+        <Image position={[0, -height, 2.3]} scale={[1.5, height/2, 1]} url="https://i.imgur.com/rrnaVCY.jpg" />
+        <Image position={[2, -height, 2.6]} scale={[1.5,height/2,1]} url="https://i.imgur.com/zbZELzh.jpg" />
         
-        <Image position={[0, -height * 2 - height / 4 - 30, 0]} scale={[width, height/1.2, 1]} url="https://i.imgur.com/67eWQDc.jpg" />
-        <Image position={[-3, -height * 2 - 12, -2]} scale={[9, 8, 1]} url="https://i.imgur.com/k6veVr0.jpg" />
-        <Image position={[4, -height * 2 - 14, 0]} scale={[4, 8, 1]} url="https://i.imgur.com/kHwc7Ey.jpg" />
-        <Image position={[-2.6, -height * 2 - 21, -1]} scale={[8, 8, 1]} url="https://i.imgur.com/22xox7s.jpg" />
+        <Image position={[0, -height * 2 - height / 4 - 30, 0]} scale={[width, height/1.2, 1]} url="https://i.imgur.com/3Sct6DB.jpg" />
+        <Image position={[-3, -height * 2 - 12, -2]} scale={[9, 8, 1]} url="https://i.imgur.com/Vo6ouG9.jpg" />
+        <Image position={[4, -height * 2 - 14, 0]} scale={[4, 8, 1]} url="https://i.imgur.com/Hiu4HSr.jpg" />
+        <Image position={[-2.6, -height * 2 - 21, -1]} scale={[8, 8, 1]} url="https://i.imgur.com/VQJ7t82.jpg" />
       </group>
     )
   }
