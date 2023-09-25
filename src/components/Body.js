@@ -1,12 +1,12 @@
 import '../App.css';
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls } from "@react-three/drei"
-import { Html, OrbitControls} from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import * as THREE from 'three';
 import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
-import {TextureLoader} from 'three';
+import { TextureLoader } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 
@@ -25,26 +25,26 @@ function Images() {
   const { width, height, camera } = useThree((state) => state.viewport)
   const data = useScroll()
   const group = useRef()
-  
 
-  useFrame(({camera}) => {
-    
+
+  useFrame(({ camera }) => {
+
 
     if (group.current) {
       // Match the X-axis rotation of the object with the camera's X-axis rotation
       group.current.rotation.z = camera.rotation.z;
       group.current.rotation.y = camera.rotation.y;
       group.current.rotation.x = camera.rotation.x;
-      
+
     }
     // 0=traffic cone, 1= 
     group.current.children[0].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 3
     group.current.children[0].material.grayscale = 1 - data.range(1.6 / 3, 1 / 3)
 
     group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3
-    
+
     group.current.children[1].material.grayscale = 1 - data.range(1.65 / 3, 0.2 / 3)
-    
+
     group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 3
 
     group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2
@@ -57,29 +57,29 @@ function Images() {
 
     group.current.children[8].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
 
-    group.current.children[8].material.grayscale = 1 - data.range(2.7 / 3, 0.5 / 3) 
+    group.current.children[8].material.grayscale = 1 - data.range(2.7 / 3, 0.5 / 3)
 
     group.current.children[8].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
 
-    
+
   })
 
   return (
     <group ref={group}>
-      <Image position={[-2.5, -height-12, 0]} scale={[width/3, height, 1]} url="https://i.imgur.com/0b8bm19.jpg" />
-      <Image position={[-1, -height-29.1, 3]} scale={[1.5,1.9,1]} url="https://i.imgur.com/BQHRsJS.jpg" />
-      <Image position={[2.5, -height-12, 1]} scale={4} url="https://i.imgur.com/pGasRlB.jpg" />
-      <Image position={[2.0, -height-29.1, 2]} scale={[1.3, 3, 1]} url="https://i.imgur.com/QNfA8Aa.jpg" />
-      <Image position={[0.4, -height-28.8, 2.5]} scale={[1.1, 3, 1]} url="https://i.imgur.com/8MfFVMI.jpg" />
-      <Image position={[-1.5, -height-35, 0]} scale={[width/1.5,height,1]} url="https://i.imgur.com/iEphnyO.jpg" />
+      <Image position={[-2.5, -height - 12, 0]} scale={[width / 3, height, 1]} url="https://i.imgur.com/0b8bm19.jpg" />
+      <Image position={[-1, -height - 29.1, 3]} scale={[1.5, 1.9, 1]} url="https://i.imgur.com/BQHRsJS.jpg" />
+      <Image position={[2.5, -height - 12, 1]} scale={4} url="https://i.imgur.com/pGasRlB.jpg" />
+      <Image position={[2.0, -height - 29.1, 2]} scale={[1.3, 3, 1]} url="https://i.imgur.com/QNfA8Aa.jpg" />
+      <Image position={[0.4, -height - 28.8, 2.5]} scale={[1.1, 3, 1]} url="https://i.imgur.com/8MfFVMI.jpg" />
+      <Image position={[-1.5, -height - 35, 0]} scale={[width / 1.5, height, 1]} url="https://i.imgur.com/iEphnyO.jpg" />
       <Image position={[0, -height * 2 - height / 4 - 12, 0]} scale={[width, height, 1]} url="https://i.imgur.com/vDcx5V8.jpg" />
-      <Image position={[3.5, -height * 2 - height / 4 - 32, -1]} scale={[width/2, height, 1]} url="https://i.imgur.com/Xan716E.jpg" />
+      <Image position={[3.5, -height * 2 - height / 4 - 32, -1]} scale={[width / 2, height, 1]} url="https://i.imgur.com/Xan716E.jpg" />
       <Image position={[0, -height * 2 - height / 4 - 42, -1]} scale={[width, height, 1]} url="https://i.imgur.com/dm2541c.png" />
       <Image position={[-4, -height * 2 - height / 4 - 36, -1]} scale={5.5} url="https://i.imgur.com/JkY2AF9.jpg" />
     </group>
   )
 }
-    
+
 /*
 function Sphere() {
   const ref = React.useRef();
@@ -102,9 +102,9 @@ function Sphere2() {
 }*/
 
 function Shape({ children, color, ...props }) {
-  
+
   return (
-    
+
     <mesh {...props} >
       {children}
       <meshStandardMaterial transparent={true} opacity={0.5} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
@@ -133,14 +133,14 @@ const SpcwbyModel = () => {
       modelRef.current.rotation.z = camera.rotation.z;
       modelRef.current.rotation.y = camera.rotation.y;
       modelRef.current.rotation.x = camera.rotation.x;
-      
+
     }
   });
 
   return (
     <group ref={modelRef}>
       <primitive object={obj.scene} position={[0.1, 0, 2.3]} scale={0.3} />
-      <meshStandardMaterial attach="material" args={[{ color: 0xffffff, emissive: "white", emissiveIntensity:5}]} />
+      <meshStandardMaterial attach="material" args={[{ color: 0xffffff, emissive: "white", emissiveIntensity: 5 }]} />
     </group>
   );
 };
@@ -160,18 +160,18 @@ function Body() {
 
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
-  const starCount = 500;
+  const starCount = 300;
 
   // Generate random positions for stars
   const positions = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(10),
+    x: THREE.MathUtils.randFloatSpread(5),
     y: THREE.MathUtils.randFloatSpread(10),
-    z: THREE.MathUtils.randFloatSpread(20),
+    z: THREE.MathUtils.randFloatSpread(15),
 
   }));
 
   const positions_lower = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(40),
+    x: THREE.MathUtils.randFloatSpread(10),
     y: THREE.MathUtils.randFloatSpread(40),
     z: THREE.MathUtils.randFloatSpread(40),
 
@@ -182,96 +182,96 @@ function Body() {
   //const fbxmodel = useLoader(FBXLoader, 'src/spacecowboy.fbx')
   return (
     <Canvas gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}>
-      
-      <Environment files="https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/hdris/noon-grass/noon_grass_1k.hdr"  />
-      
+
+      <Environment files="https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/hdris/noon-grass/noon_grass_1k.hdr" />
+
 
       <OrbitControls autoRotate enablePan={false} enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
       <ScrollControls damping={1.2} pages={9}>
-      <Scroll>
-      
-      {/* star field */}
-      <group ref={groupRef} >
-      {positions.map((position, index) => (
-        <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereGeometry args={[0.005, 5, 5]} />
-          <meshBasicMaterial color="#ffffff" />
-        </mesh>
-      ))}
-    </group>
+        <Scroll>
 
-    <mesh position={[0, 0, 0]}>
-      <sphereGeometry args={[6, 20, 20]}/>
-      <meshBasicMaterial map={texture} side={THREE.BackSide}/>
-      </mesh>
-     
-      <mesh rotation={[11,0,0]} position={[0,-5.4,0]}>
-        <torusGeometry args={[4, 0.1, 16, 100]}/>
-        <meshStandardMaterial  toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0,30,0]} />
-      </mesh>
-      
-      <mesh rotation={[11,0,0]} position={[0,-5.1,0]}>
-        <torusGeometry args={[4.2, 0.6, 16, 100]}/>
-        <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
-      </mesh>
-      
-        
-      {/* star field */}
-      <group ref={groupRef2} position={[0,-10,10]}>
-      {positions_lower.map((position, index) => (
-        <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereGeometry args={[0.005, 5, 5]} />
-          <meshBasicMaterial color="#ffffff" />
-        </mesh>
-      ))}
-    </group>
+          {/* star field */}
+          <group ref={groupRef} >
+            {positions.map((position, index) => (
+              <mesh key={index} position={[position.x, position.y, position.z]}>
+                <sphereGeometry args={[0.005, 1, 1]} />
+                <meshBasicMaterial color="#ffffff" />
+              </mesh>
+            ))}
+          </group>
 
-    <group ref={groupRef2} position={[0,-40,10]}>
-      {positions_lower.map((position, index) => (
-        <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereGeometry args={[0.005, 5, 5]} />
-          <meshBasicMaterial color="#ffffff" />
-        </mesh>
-      ))}
-    </group>
+          <mesh position={[0, 0, 0]}>
+            <sphereGeometry args={[6, 20, 20]} />
+            <meshBasicMaterial map={texture} side={THREE.BackSide} />
+          </mesh>
 
-    <SpcwbyModel/>
-     {/*allows for sphere to glow
+          <mesh rotation={[11, 0, 0]} position={[0, -5.4, 0]}>
+            <torusGeometry args={[4, 0.1, 16, 100]} />
+            <meshStandardMaterial toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0, 30, 0]} />
+          </mesh>
+
+          <mesh rotation={[11, 0, 0]} position={[0, -5.1, 0]}>
+            <torusGeometry args={[4.2, 0.6, 16, 100]} />
+            <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
+          </mesh>
+
+
+          {/* star field */}
+          <group ref={groupRef2} position={[0, -10, 10]}>
+            {positions_lower.map((position, index) => (
+              <mesh key={index} position={[position.x, position.y, position.z]}>
+                <sphereGeometry args={[0.005, 1, 1]} />
+                <meshBasicMaterial color="#ffffff" />
+              </mesh>
+            ))}
+          </group>
+
+          <group ref={groupRef2} position={[0, -40, 10]}>
+            {positions_lower.map((position, index) => (
+              <mesh key={index} position={[position.x, position.y, position.z]}>
+                <sphereGeometry args={[0.005, 1, 1]} />
+                <meshBasicMaterial color="#ffffff" />
+              </mesh>
+            ))}
+          </group>
+
+          <SpcwbyModel />
+          {/*allows for sphere to glow
       <ambientLight position={[2,3,2]}>
       </ambientLight>
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />*/}
-      
-      <Shapepink color={[100,100,0]} position={[0, 0, 0]} >
-       <sphereGeometry args={[0.6, 20, 15]}/>
-      </Shapepink>
-      
-      <ambientLight intensity={0.2} />
-      
-      <Shape color={[5,0,0]} position={[0, 0, 0]} >
-       <sphereGeometry  args={[2.1, 20, 25]} />
-      </Shape>
-      
-      <Images />
-      <Html>
-      
-      <div style={arrow}>↓
-      </div>
-      </Html>
-      </Scroll>
+
+          <Shapepink color={[100, 100, 0]} position={[0, 0, 0]} >
+            <sphereGeometry args={[0.6, 20, 15]} />
+          </Shapepink>
+
+          <ambientLight intensity={0.2} />
+
+          <Shape color={[5, 0, 0]} position={[0, 0, 0]} >
+            <sphereGeometry args={[2.1, 20, 25]} />
+          </Shape>
+
+          <Images />
+          <Html>
+
+            <div style={arrow}>↓
+            </div>
+          </Html>
+        </Scroll>
       </ScrollControls>
 
-      
+
       <EffectComposer disableNormalPass>
         <Bloom mipmapBlur radius={0.75} luminanceThreshold={1} />
         <Vignette eskil={false} offset={0.1} darkness={0.5} />
         <HueSaturation hue={4.191} />
-        <BrightnessContrast brightness={-0.1}/>
-        
+        <BrightnessContrast brightness={-0.1} />
+
         {/*<LUT lut={texture2} />*/}
       </EffectComposer>
-      
+
     </Canvas>
   );
 };
