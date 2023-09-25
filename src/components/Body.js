@@ -80,27 +80,7 @@ function Images() {
   )
 }
 
-/*
-function Sphere() {
-  const ref = React.useRef();
-  return (
-    <mesh ref={ref}>
-      <sphereBufferGeometry args={[1.4, 20, 25]} />
-      <meshStandardMaterial color="red" roughness='0' envMapIntensity={0.5} />
-      </mesh>
-  );
-}
-
-function Sphere2() {
-  const ref = React.useRef();
-  return (
-    <mesh ref={ref}>
-      <sphereBufferGeometry args={[2.2, 20, 25]} />
-      <meshStandardMaterial color="#43539f" roughness='1' envMapIntensity={0.5} transparent={true} opacity='0.5' emissive={true} emissiveIntensity="50"/>
-      </mesh>
-  );
-}*/
-
+{/*
 function Shape({ children, color, ...props }) {
 
   return (
@@ -120,9 +100,9 @@ function Shapepink({ children, color, ...props }) {
       <meshStandardMaterial toneMapped={false} emissive={"red"} emissiveIntensity={1} color={color} />
     </mesh>
   )
-}
+}8/}
 
-const SpcwbyModel = () => {
+{/*const SpcwbyModel = () => {
   const obj = useLoader(GLTFLoader, './models/spcwbymodel3.glb')
   const modelRef = useRef(); // Create a reference to the 3D object
 
@@ -143,7 +123,7 @@ const SpcwbyModel = () => {
       <meshStandardMaterial attach="material" args={[{ color: 0xffffff, emissive: "white", emissiveIntensity: 5 }]} />
     </group>
   );
-};
+};*/}
 
 
 
@@ -200,7 +180,7 @@ function Body() {
             ))}
           </group>*/}
 
-          <mesh position={[0, 0, 0]}>
+          {/*<mesh position={[0, 0, 0]}>
             <sphereGeometry args={[6, 15, 15]} />
             <meshBasicMaterial map={texture} side={THREE.BackSide} />
           </mesh>
@@ -213,7 +193,7 @@ function Body() {
           <mesh rotation={[11, 0, 0]} position={[0, -5.1, 0]}>
             <torusGeometry args={[4.22, 0.6, 5, 25]} />
             <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
-          </mesh>
+        </mesh>*/}
 
 
           {/* star field */}
@@ -235,23 +215,23 @@ function Body() {
             ))}
           </group>*/}
 
-          <SpcwbyModel />
+          {/*<SpcwbyModel />*/}
           {/*allows for sphere to glow
       <ambientLight position={[2,3,2]}>
       </ambientLight>
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />*/}
-
+{/*
           <Shapepink color={[100, 100, 0]} position={[0, 0, 0]} >
             <sphereGeometry args={[0.6, 5, 10]} />
-          </Shapepink>
+    </Shapepink>*/}
 
           <ambientLight intensity={0.2} />
-
+{/*
           <Shape color={[5, 0, 0]} position={[0, 0, 0]} >
             <sphereGeometry args={[2.2, 15, 10]} />
-          </Shape>
+  </Shape>*/}
 
           <Images />
           <Html>
