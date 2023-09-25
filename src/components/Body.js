@@ -180,7 +180,7 @@ function Body() {
             ))}
           </group>*/}
 
-          {/*<mesh position={[0, 0, 0]}>
+          <mesh position={[0, 0, 0]}>
             <sphereGeometry args={[6, 15, 15]} />
             <meshBasicMaterial map={texture} side={THREE.BackSide} />
           </mesh>
@@ -193,7 +193,7 @@ function Body() {
           <mesh rotation={[11, 0, 0]} position={[0, -5.1, 0]}>
             <torusGeometry args={[4.22, 0.6, 5, 25]} />
             <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
-        </mesh>*/}
+          </mesh>
 
 
           {/* star field */}
