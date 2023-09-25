@@ -8,7 +8,7 @@ function App() {
             <div className="bodySection">
                 {/* Define routes for different pages */}
                 <Routes>
-                    <Route exact path="/" element={<Body />} />
+                    <Route exact path="/" element={<Gallery />} />
                     <Route path="/gallery" element={<Gallery />} />
                     <Route path="/events" element={<Gallery />} />
                 </Routes>
