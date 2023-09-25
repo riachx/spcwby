@@ -10,8 +10,8 @@ function App() {
             <div className="bodySection">
                 {/* Define routes for different pages */}
                 <Routes>
-                    <Route exact path="/" element={<Events />} />
-                    <Route path="/gallery" element={<Events />} />
+                    <Route exact path="/" element={<Body />} />
+                    <Route path="/gallery" element={<Gallery />} />
                     <Route path="/events" element={<Events />} />
                 </Routes>
                 {/* Footer or other components */}
