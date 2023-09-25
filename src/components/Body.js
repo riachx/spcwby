@@ -160,7 +160,7 @@ function Body() {
 
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
-  const starCount = 300;
+  {/*const starCount = 300;
 
   // Generate random positions for stars
   const positions = [...Array(starCount)].map(() => ({
@@ -175,7 +175,7 @@ function Body() {
     y: THREE.MathUtils.randFloatSpread(40),
     z: THREE.MathUtils.randFloatSpread(40),
 
-  }));
+  }));*/}
   const texture = useLoader(TextureLoader, 'https://i.imgur.com/TUR0W67.png');
   //const fbx = useLoader(FBXLoader, "Car.fbx");
   //const texture2 = useLoader(LUTCubeLoader, "./assets/F-6800-STD.cube");
@@ -191,40 +191,40 @@ function Body() {
         <Scroll>
 
           {/* star field */}
-          <group ref={groupRef} >
+          {/*<group ref={groupRef} >
             {positions.map((position, index) => (
               <mesh key={index} position={[position.x, position.y, position.z]}>
                 <sphereGeometry args={[0.005, 1, 1]} />
                 <meshBasicMaterial color="#ffffff" />
               </mesh>
             ))}
-          </group>
+          </group>*/}
 
           <mesh position={[0, 0, 0]}>
-            <sphereGeometry args={[6, 20, 20]} />
+            <sphereGeometry args={[6, 15, 15]} />
             <meshBasicMaterial map={texture} side={THREE.BackSide} />
           </mesh>
 
           <mesh rotation={[11, 0, 0]} position={[0, -5.4, 0]}>
-            <torusGeometry args={[4, 0.1, 16, 100]} />
+            <torusGeometry args={[4, 0.11, 5, 25]} />
             <meshStandardMaterial toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0, 30, 0]} />
           </mesh>
 
           <mesh rotation={[11, 0, 0]} position={[0, -5.1, 0]}>
-            <torusGeometry args={[4.2, 0.6, 16, 100]} />
+            <torusGeometry args={[4.22, 0.6, 5, 25]} />
             <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
           </mesh>
 
 
           {/* star field */}
-          <group ref={groupRef2} position={[0, -10, 10]}>
+          {/*<group ref={groupRef2} position={[0, -10, 10]}>
             {positions_lower.map((position, index) => (
               <mesh key={index} position={[position.x, position.y, position.z]}>
                 <sphereGeometry args={[0.005, 1, 1]} />
                 <meshBasicMaterial color="#ffffff" />
               </mesh>
             ))}
-          </group>
+            </group>
 
           <group ref={groupRef2} position={[0, -40, 10]}>
             {positions_lower.map((position, index) => (
@@ -233,7 +233,7 @@ function Body() {
                 <meshBasicMaterial color="#ffffff" />
               </mesh>
             ))}
-          </group>
+          </group>*/}
 
           <SpcwbyModel />
           {/*allows for sphere to glow
@@ -244,13 +244,13 @@ function Body() {
       <pointLight position={[-10, -10, -10]} />*/}
 
           <Shapepink color={[100, 100, 0]} position={[0, 0, 0]} >
-            <sphereGeometry args={[0.6, 20, 15]} />
+            <sphereGeometry args={[0.6, 5, 10]} />
           </Shapepink>
 
           <ambientLight intensity={0.2} />
 
           <Shape color={[5, 0, 0]} position={[0, 0, 0]} >
-            <sphereGeometry args={[2.1, 20, 25]} />
+            <sphereGeometry args={[2.2, 15, 10]} />
           </Shape>
 
           <Images />
