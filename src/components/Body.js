@@ -1,19 +1,12 @@
 import '../App.css';
-import React, {Suspense, useState, useEffect,useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
-import Footer from './Footer';
-import NavBar from './NavBar';
-import { Environment, Preload, useTexture, Effects, useScroll, Image as ImageImpl, Scroll, ScrollControls } from "@react-three/drei"
-import { Html, Stars, OrbitControls,MeshTransmissionMaterial } from "@react-three/drei";
+import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls } from "@react-three/drei"
+import { Html, OrbitControls} from "@react-three/drei";
 import * as THREE from 'three';
-import { useControls } from 'leva';
-
-import { SelectiveBloom,HueSaturation, Bloom, BrightnessContrast, DepthOfField, EffectComposer,LUT, Noise, Vignette } from '@react-three/postprocessing'
-import { BlurPass, Resizer, KernelSize } from 'postprocessing'
+import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
-import {Camera, Color, TextureLoader} from 'three';
-import { LUTCubeLoader } from 'postprocessing'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import {TextureLoader} from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 
@@ -121,7 +114,6 @@ function Shape({ children, color, ...props }) {
 
 
 function Shapepink({ children, color, ...props }) {
-  const texture2 = useLoader(TextureLoader, 'https://i.imgur.com/5ApXqsT.png');
   return (
     <mesh {...props} >
       {children}
@@ -131,7 +123,7 @@ function Shapepink({ children, color, ...props }) {
 }
 
 const SpcwbyModel = () => {
-  const obj = useLoader(GLTFLoader, './models/spcwbymodel.glb')
+  const obj = useLoader(GLTFLoader, './models/spcwbymodel3.glb')
   const modelRef = useRef(); // Create a reference to the 3D object
 
   // Use the useFrame hook to update the rotation
@@ -202,24 +194,24 @@ function Body() {
       <group ref={groupRef} >
       {positions.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereBufferGeometry args={[0.005, 5, 5]} />
+          <sphereGeometry args={[0.005, 5, 5]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
     </group>
 
     <mesh position={[0, 0, 0]}>
-      <sphereBufferGeometry args={[6, 20, 20]}/>
+      <sphereGeometry args={[6, 20, 20]}/>
       <meshBasicMaterial map={texture} side={THREE.BackSide}/>
       </mesh>
      
       <mesh rotation={[11,0,0]} position={[0,-5.4,0]}>
-        <torusBufferGeometry args={[4, 0.1, 16, 100]}/>
+        <torusGeometry args={[4, 0.1, 16, 100]}/>
         <meshStandardMaterial  toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0,30,0]} />
       </mesh>
       
       <mesh rotation={[11,0,0]} position={[0,-5.1,0]}>
-        <torusBufferGeometry args={[4.2, 0.6, 16, 100]}/>
+        <torusGeometry args={[4.2, 0.6, 16, 100]}/>
         <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
       </mesh>
       
@@ -228,7 +220,7 @@ function Body() {
       <group ref={groupRef2} position={[0,-10,10]}>
       {positions_lower.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereBufferGeometry args={[0.005, 5, 5]} />
+          <sphereGeometry args={[0.005, 5, 5]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
@@ -237,7 +229,7 @@ function Body() {
     <group ref={groupRef2} position={[0,-40,10]}>
       {positions_lower.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereBufferGeometry args={[0.005, 5, 5]} />
+          <sphereGeometry args={[0.005, 5, 5]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
@@ -252,13 +244,13 @@ function Body() {
       <pointLight position={[-10, -10, -10]} />*/}
       
       <Shapepink color={[100,100,0]} position={[0, 0, 0]} >
-       <sphereBufferGeometry args={[0.6, 20, 15]}/>
+       <sphereGeometry args={[0.6, 20, 15]}/>
       </Shapepink>
       
       <ambientLight intensity={0.2} />
       
       <Shape color={[5,0,0]} position={[0, 0, 0]} >
-       <sphereBufferGeometry  args={[2.1, 20, 25]} />
+       <sphereGeometry  args={[2.1, 20, 25]} />
       </Shape>
       
       <Images />

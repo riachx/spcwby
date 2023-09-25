@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
 import Body from './components/Body';
 import Gallery from './components/HomeGallery';
-import Events from './components/Events'; // Correct the import path for AboutPage
+import Events from './components/Events';
 
 function App() {
     return (
@@ -14,7 +12,7 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<Body />} />
                     <Route path="/gallery" element={<Gallery />} />
-                    <Route path="/about" element={<Events />} />
+                    <Route path="/events" element={<Events />} />
                 </Routes>
                 {/* Footer or other components */}
             </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from '@react-three/drei';
 import '../App.css';
 
 function NavBar() {
