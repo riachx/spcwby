@@ -162,23 +162,23 @@ function Body() {
       <group ref={groupRef} >
       {positions.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereBufferGeometry args={[0.005, 2, 2]} />
+          <sphereGeometry args={[0.005, 2, 2]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
     </group>
     <mesh position={[0, 0, 0]}>
-      <sphereBufferGeometry args={[6, 20, 20]}/>
+      <sphereGeometry args={[6, 20, 20]}/>
       <meshBasicMaterial map={texture} side={THREE.BackSide}/>
       </mesh>
      
       <mesh rotation={[11,0,0]} position={[0,-5.4,0]}>
-        <torusBufferGeometry args={[4, 0.1, 16, 100]}/>
+        <torusGeometry args={[4, 0.1, 16, 100]}/>
         <meshStandardMaterial  toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0,30,0]} />
       </mesh>
       
       <mesh rotation={[11,0,0]} position={[0,-5.1,0]}>
-        <torusBufferGeometry args={[4.2, 0.6, 16, 100]}/>
+        <torusGeometry args={[4.2, 0.6, 16, 100]}/>
         <meshStandardMaterial   transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
       </mesh>
 
@@ -187,7 +187,7 @@ function Body() {
       <group ref={groupRef2} position={[0,-10,10]}>
       {positions_lower.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereBufferGeometry args={[0.005, 2, 2]} />
+          <sphereGeometry args={[0.005, 2, 2]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
@@ -195,7 +195,7 @@ function Body() {
     <group ref={groupRef2} position={[0,-40,10]}>
       {positions_lower.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereBufferGeometry args={[0.005, 2, 2]} />
+          <sphereGeometry args={[0.005, 2, 2]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
@@ -209,13 +209,13 @@ function Body() {
       <pointLight position={[-10, -10, -10]} />*/}
       
       <Shapepink color={[100,100,0]} position={[0, 0, 0]} >
-       <sphereBufferGeometry args={[0.6, 20, 15]}/>
+       <sphereGeometry args={[0.6, 20, 15]}/>
       </Shapepink>
       
       <ambientLight intensity={0.2} />
       
       <Shape color={[5,0,0]} position={[0, 0, 0]} >
-       <sphereBufferGeometry  args={[2.1, 20, 25]} />
+       <sphereGeometry  args={[2.1, 20, 25]} />
       </Shape>
       
       <Images />
