@@ -23,7 +23,7 @@ const Footer = () => {
 
   return (
     <footer style={footerStyle}>
-      <span>SPACECOWBOY INC.</span>
+      <span>SPACECOWBOY INC. </span>
       <a href={"https://www.instagram.com/spacecowboy.inc"} target="_blank" rel="noopener noreferrer" style={{padding:'0%'}}>
         <img src="https://i.imgur.com/0Gj1oMS.png" alt="Logo" style={logoStyle} />
       </a>

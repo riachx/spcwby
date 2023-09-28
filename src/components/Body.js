@@ -38,7 +38,7 @@ function Images() {
 
     }
     // 0=traffic cone, 1= 
-    group.current.children[0].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 3
+    group.current.children[0].material.zoom = 1 + data.range(1 / 3, 0.2 / 3) / 3
     group.current.children[0].material.grayscale = 1 - data.range(1.6 / 3, 1 / 3)
 
     group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3
@@ -66,13 +66,13 @@ function Images() {
 
   return (
     <group ref={group}>
-      <Image position={[-2.5, -height - 12, 0]} scale={[width / 3, height, 1]} url="https://i.imgur.com/6EcFpIQ.jpg" />
+      <Image position={[-2.5, -height - 9, 0]} scale={[width / 3, height, 1]} url="https://i.imgur.com/6EcFpIQ.jpg" />
       <Image position={[-1, -height - 29.1, 3]} scale={[1.5, 1.9, 1]} url="https://i.imgur.com/EeDc7jA.jpg" />
-      <Image position={[2.5, -height - 12, 1]} scale={4} url="https://i.imgur.com/R9O1MVg.jpg" />
+      <Image position={[2.5, -height - 11, 1]} scale={4} url="https://i.imgur.com/R9O1MVg.jpg" />
       <Image position={[2.0, -height - 29.1, 2]} scale={[1.3, 3, 1]} url="https://i.imgur.com/Df1sbBY.jpg" />
       <Image position={[0.4, -height - 28.8, 2.5]} scale={[1.1, 3, 1]} url="https://i.imgur.com/K1f4x0h.jpg" />
       <Image position={[-1.5, -height - 35, 0]} scale={[width / 1.5, height, 1]} url="https://i.imgur.com/d6GPiAP.jpg" />
-      <Image position={[0, -height * 2 - height / 4 - 12, 0]} scale={[width, height, 1]} url="https://i.imgur.com/jsjxgZU.jpg" />
+      <Image position={[0, -height * 2 - height / 4 - 11, 0]} scale={[width, height, 1]} url="https://i.imgur.com/w1L8AVL.jpg" />
       <Image position={[3.5, -height * 2 - height / 4 - 32, -1]} scale={[width / 2, height, 1]} url="https://i.imgur.com/35aCyWk.jpg" />
       <Image position={[0, -height * 2 - height / 4 - 42, -1]} scale={[width, height, 1]} url="https://i.imgur.com/ukBXU0M.jpg" />
       <Image position={[-4, -height * 2 - height / 4 - 36, -1]} scale={5.5} url="https://i.imgur.com/Bj2qZdz.jpg" />
