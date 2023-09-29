@@ -45,7 +45,6 @@ a{
   line-height: 1.8em;
   padding: 10%;
   text-decoration: none;
-  
 }
 
 .right{
@@ -65,7 +64,9 @@ a{
   
   
 }
-
+canvas{
+  touch-action: auto!important;
+}
 .nav-links {
 
   list-style: none;
@@ -95,6 +96,12 @@ a{
   
 }
 
+.nav-links a.active::after {
+  text-decoration: dotted;
+  text-decoration: wavy;
+  color: #0000ff;
+}
+
 .left-text {
 
   font-family: 'Roboto', sans-serif;
@@ -118,7 +125,7 @@ a{
 .line{
   font-family: 'Roboto', sans-serif;
   position: relative; /* Position the element absolutely within its containing parent */
-  top:30px;
+  top:22px;
   left:-10px;
   font-size: 10px; 
   color: #ffffff; 
@@ -174,4 +181,61 @@ span.stretch {
   -ms-transform:scale(2,1); /* IE 9 */
   -o-transform:scale(2,1); /* Opera */
   transform:scale(2,1); /* W3C */
+}
+
+@media (max-width: 580px) {
+  .nav-links a{
+    font-size: 15px; /* Reduce the font size for smaller screens */
+
+  }
+  .left-text {
+
+    left: 18%; /* Adjust the left distance from the left edge of the screen */
+    padding-top:140px;
+    
+  }
+  .nav-links {
+    margin-right:20%;
+  
+  }
+  
+}
+
+
+@media (max-width: 420px) {
+  .nav-links a{
+    font-size: 17px; /* Reduce the font size for smaller screens */
+
+  }
+  .left-text {
+
+
+    left: 18%; /* Adjust the left distance from the left edge of the screen */
+    padding-top:150px;
+    
+  }
+  .nav-links li {
+    margin-left:7%;
+  }
+  .nav-links {
+    margin-right:20%;
+  
+  }
+
+  #root
+{
+    
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /*background-image: url("./background.png");*/
+    background-color:black;
+    background-size: 100%;
+    /*background: radial-gradient(at 50% 100%, #2727c3 40%, #06068f 80%, #020263 100%);*/
+}
+  
 }

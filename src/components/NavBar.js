@@ -2,18 +2,19 @@ import React from 'react';
 import '../App.css';
 
 function NavBar() {
+  
   return (
-    
+
     <nav className="navbar">
 
       <div className="left-text">
-      <div><p className="line">|</p></div>
-      <p className="low-opacity">WEST COAST</p>
+        <div><p className="line">|</p></div>
+        <p className="low-opacity">WEST COAST</p>
         <p>ELECTRONIC MUSIC</p>
         <p>+ ART COLLECTIVE</p>
       </div>
       <ul className="nav-links">
-      <li>
+        <li>
           <a href="/">HOME</a>
         </li>
         <li>
@@ -24,7 +25,7 @@ function NavBar() {
         </li>
       </ul>
     </nav>
-    
+  
   );
 }
 

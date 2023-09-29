@@ -20,7 +20,9 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "react-three-fiber": "^6.0.13",
+    "styled-components": "^6.0.8",
     "three": "^0.153.0",
+    "valtio": "^1.11.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
