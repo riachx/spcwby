@@ -137,12 +137,11 @@ function Items({ w = 3, gap = 0.2 }) {
         {urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */}
         
         <Text
-          position={[-2,0.1,1.2]}
-          fontSize={1.5}
-          color="white"
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.06"
-
+          position={[-1.6,0,1.2]}
+          fontSize={1.4}
+          font="fonts/MerseyCowboy.otf"
+          letterSpacing="0.08"
+          scale={[1.4,1,1]}
           lineHeight= "0.75"
         >
           UP{'\n'}COM{'\n'}ING 
@@ -153,7 +152,7 @@ function Items({ w = 3, gap = 0.2 }) {
           fontSize={0.1}
           color="white"
           /*fix*/
-          font="fonts/arial-black.woff"
+          font="fonts/ArialRegular.otf"
           letterSpacing="-0.02"
           lineHeight= "1"
           scale={[1.5,1,1]}
@@ -176,11 +175,12 @@ function Items({ w = 3, gap = 0.2 }) {
         <Image position={[0.8,0,2.8]} scale={[1.42857,2,0]} url={'https://i.imgur.com/uKlaQV8.jpg'}></Image>
         
         <Text
-          position={[5.6,0.2,2]}
+          position={[5,0.2,2]}
           fontSize={1.5}
           color="white"
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.06"
+          font="fonts/MerseyCowboy.otf"
+          letterSpacing="0"
+          scale={[1.8,1,1]}
         >
           PAST
         </Text>
