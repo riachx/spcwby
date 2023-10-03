@@ -152,7 +152,7 @@ function Items({ w = 3, gap = 0.2 }) {
           fontSize={0.1}
           color="white"
           /*fix*/
-          font="fonts/ArialRegular.otf"
+          font="fonts/HankenGrotesk-Light.ttf"
           letterSpacing="-0.02"
           lineHeight= "1"
           scale={[1.5,1,1]}
