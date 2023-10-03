@@ -152,7 +152,8 @@ function Items({ w = 3, gap = 0.2 }) {
           position={[-0.9,0.6,1.2]}
           fontSize={0.1}
           color="white"
-          font="fonts/ArialMT.woff"
+          /*fix*/
+          font="fonts/arial-black.woff"
           letterSpacing="-0.02"
           lineHeight= "1"
           scale={[1.5,1,1]}
@@ -164,7 +165,8 @@ function Items({ w = 3, gap = 0.2 }) {
         <Text
           position={[0.85,-0.9,2.8]}
           fontSize={0.07}
-          font="fonts/ArialMT.woff"
+          /*fix*/
+          font="fonts/arial-black.woff"
           letterSpacing="-0.02"
           scale={[1.5,1,1]}
         >
@@ -197,7 +199,8 @@ function Items({ w = 3, gap = 0.2 }) {
           position={[6.3,-0.75,2.7]}
           fontSize={0.25}
           color="white"
-          font="fonts/ArialMT.woff"
+          /*fix*/
+          font="fonts/arial-black.woff"
           letterSpacing="-0.02"
           lineHeight= "1"
         >
@@ -240,7 +243,8 @@ function Items({ w = 3, gap = 0.2 }) {
           position={[48,-1.1,1]}
           fontSize={0.2}
           color="white"
-          font="fonts/ArialMT.woff"
+          /*fix*/
+          font="fonts/arial-black.woff"
           letterSpacing="-0.02"
           lineHeight= "1"
         >
@@ -273,7 +277,8 @@ function Items({ w = 3, gap = 0.2 }) {
           position={[88,-1.1,1]}
           fontSize={0.2}
           color="white"
-          font="fonts/ArialMT.woff"
+          /*fix*/
+          font="fonts/arial-black.woff"
           letterSpacing="-0.02"
           lineHeight= "1"
         >
