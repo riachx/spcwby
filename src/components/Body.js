@@ -305,7 +305,7 @@ function Body() {
 
         <EffectComposer disableNormalPass>
           <Bloom mipmapBlur radius={0.75} luminanceThreshold={1} />
-          <Vignette eskil={false} offset={0.1} darkness={0.9} />
+          <Vignette eskil={false} offset={0.1} darkness={0.7} />
           <HueSaturation hue={4.191} />
           <BrightnessContrast brightness={-0.1} />
 

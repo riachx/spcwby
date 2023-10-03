@@ -14,7 +14,6 @@ function App() {
                     <Route path="/gallery" element={<Gallery />} />
                     <Route path="/events" element={<Events />} />
                 </Routes>
-                {/* Footer or other components */}
             </div>
         </Router>
 
