@@ -213,7 +213,7 @@ function Items({ w = 3, gap = 0.2 }) {
 
         
 
-        <Image scale={[7,4,1]} position={[47.2,-0.2,0]} url={'https://i.imgur.com/IMaPWwv.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[47.2,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
         
         <Text
           position={[2,0,2.7]}
