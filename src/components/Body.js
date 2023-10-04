@@ -2,7 +2,7 @@ import '../App.css';
 import React, { useState, useRef } from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls, Float } from "@react-three/drei"
-import { Html, OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls, Text } from "@react-three/drei";
 import * as THREE from 'three';
 import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
@@ -156,6 +156,72 @@ const SpcwbyModel = () => {
   );
 };
 
+const WestCoast = () => {
+  const textRef = useRef(); // Create a reference to the 3D object
+  // Use the useFrame hook to update the rotation
+
+  const { width } = useThree((state) => state.viewport)
+  let s;
+
+  if (width > 4.8) {
+    s = 0.3
+
+  } else {
+    s = 0.2
+  }
+
+
+  useFrame(({ camera }) => {
+    if (textRef.current) {
+      // Match the X-axis rotation of the object with the camera's X-axis rotation
+      textRef.current.rotation.z = camera.rotation.z;
+      textRef.current.rotation.y = camera.rotation.y;
+      textRef.current.rotation.x = camera.rotation.x;
+
+    }
+  });
+  return (
+    <group ref={textRef}>
+      <Text
+          position={[-4.45,2.85,0.5]}
+          fontSize={0.1}
+          color="grey"
+          font="fonts/HankenGrotesk-Light.woff"
+          letterSpacing="-0.05"
+          scale={[1.5,1,1]}
+        >WEST COAST
+        </Text>
+        <Text
+          position={[-4.23,2.72,0.5]}
+          fontSize={0.1}
+          font="fonts/HankenGrotesk-Light.woff"
+          letterSpacing="-0.05"
+          scale={[1.5,1,1]}
+        >ELECTRONIC MUSIC
+        </Text>
+        <Text
+          position={[-4.27,2.58,0.5]}
+          fontSize={0.1}
+          font="fonts/HankenGrotesk-Light.woff"
+          letterSpacing="-0.05"
+          scale={[1.5,1,1]}
+        >+ ART COLLECTIVE
+        </Text>
+        <Text
+          position={[-4.95,2.71,0.5]}
+          fontSize={0.2}
+          font="fonts/HankenGrotesk-Light.woff"
+          letterSpacing="-0.05"
+          scale={[1,2.2,1]}
+        >|
+        </Text>
+
+     </group>
+  );
+};
+
+
+
 function Test() {
   const { width, height, camera } = useThree((state) => state.viewport)
   const data = useScroll()
@@ -294,7 +360,6 @@ function Body() {
             </Shape>
 
             <Images />
-
             <Html>
               <div style={arrow}>↓
               </div>

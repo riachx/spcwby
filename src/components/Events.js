@@ -1,8 +1,10 @@
 import * as THREE from 'three'
 import React, { useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Image, ScrollControls, Text, Scroll, useScroll } from '@react-three/drei'
+import { ScrollControls, Text, Scroll, useScroll, Image, useIntersect, OrbitControls} from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
+import { Bloom, EffectComposer, N8AO, TiltShift2 } from "@react-three/postprocessing"
+import '../App.css';
 
 {/* Base credit to drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
 
@@ -138,7 +140,7 @@ function Items({ w = 3, gap = 0.2 }) {
         
         <Text
           position={[-1.6,0,1.2]}
-          fontSize={1.4}
+          fontSize={width/10}
           font="fonts/MerseyCowboy.otf"
           letterSpacing="0.08"
           scale={[1.4,1,1]}
@@ -148,31 +150,32 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[-0.9,0.6,1.2]}
-          fontSize={0.1}
+          position={[0.8,-0.9,2.8]}
+          fontSize={0.07}
           color="white"
           /*fix*/
           font="fonts/HankenGrotesk-Light.ttf"
           letterSpacing="-0.02"
           lineHeight= "1"
-          scale={[1.5,1,1]}
+          scale={[1.4,1,1]}
         >
           SCROLL RIGHT
         </Text>
 
 
         <Text
-          position={[0.85,-0.9,2.8]}
+          position={[0.8,0.9,2.8]}
           fontSize={0.07}
           /*fix*/
-          font="fonts/arial-black.woff"
+          font="fonts/HankenGrotesk-Light.ttf"
           letterSpacing="-0.02"
-          scale={[1.5,1,1]}
+          scale={[1.4,1,1]}
         >
           STAY TUNED . . .
         </Text>
 
-        <Image position={[0.8,0,2.8]} scale={[1.42857,2,0]} url={'https://i.imgur.com/uKlaQV8.jpg'}></Image>
+        {/*Placeholder question mark image. Put upcoming event here */}
+        <Image url={'https://i.imgur.com/uKlaQV8.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]} ></Image>
         
         <Text
           position={[5,0.2,2]}
@@ -196,27 +199,22 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
         
         <Text
-          position={[6.3,-0.75,2.7]}
+          position={[5.7,-0.5,2.7]}
           fontSize={0.25}
           color="white"
           /*fix*/
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.02"
+          font="fonts/HankenGrotesk-Medium.ttf"
+          letterSpacing="-0.07"
           lineHeight= "1"
+          scale={[1.3,1,1]}
         >
-          EVENTS
+          events
         </Text>
 
-        <Text
-          position={[47.9,0.2,0]}
-          fontSize={2.5}
-          color="white"
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.06"
-        >
-          2022
-        </Text>
+        
 
+        <Image scale={[7,4,1]} position={[47.2,-0.2,0]} url={'https://i.imgur.com/IMaPWwv.jpg'}></Image>
+        
         <Text
           position={[2,0,2.7]}
           fontSize={0.2}
@@ -240,28 +238,22 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[48,-1.1,1]}
-          fontSize={0.2}
+          position={[48.7,-1.1,1]}
+          fontSize={0.25}
           color="white"
           /*fix*/
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.02"
+          font="fonts/HankenGrotesk-Medium.ttf"
+          letterSpacing="-0.07"
           lineHeight= "1"
+          scale={[1.3,1,1]}
         >
-          EVENTS
+          events
         </Text>
 
 
 
-        <Text
-          position={[86.5,0.2,0]}
-          fontSize={2.5}
-          color="white"
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.06"
-        >
-          2021
-        </Text>
+
+        <Image scale={[7,4,1]} position={[86.5,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
         <Text
           position={[90,0,0]}
           fontSize={0.8}
@@ -274,19 +266,52 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
         
         <Text
-          position={[88,-1.1,1]}
-          fontSize={0.2}
+          position={[86.5,-1.1,1]}
+          fontSize={0.25}
           color="white"
           /*fix*/
-          font="fonts/arial-black.woff"
-          letterSpacing="-0.02"
+          font="fonts/HankenGrotesk-Medium.ttf"
+          letterSpacing="-0.07"
           lineHeight= "1"
+          scale={[1.3,1,1]}
         >
-          EVENTS
+          events
         </Text>
         </Scroll>
     </ScrollControls>
   )
+}
+
+function Logo(){
+  const textRef = useRef(); // Create a reference to the 3D object
+  // Use the useFrame hook to update the rotation
+
+  const { width } = useThree((state) => state.viewport)
+  let s;
+
+  if (width > 4.8) {
+    s = 0.3
+
+  } else {
+    s = 0.2
+  }
+
+
+  useFrame(({ camera }) => {
+  
+  if (textRef.current) {
+    // Match the X-axis rotation of the object with the camera's X-axis rotation
+    textRef.current.rotation.z = camera.rotation.z;
+    textRef.current.rotation.y = camera.rotation.y;
+    textRef.current.rotation.x = camera.rotation.x;
+
+  }
+});
+return (
+  <group ref={textRef}>
+    <Image href= {'www.net.com'} scale={[2.43,1,1]} position={[-7.5,7,-6]} url={"https://i.imgur.com/y60zwOw.jpg"}></Image>
+    </group>
+)
 }
 
 function Stars(){
@@ -295,10 +320,16 @@ function Stars(){
   const groupRef = React.useRef();
   // Generate random positions for stars
   const positions = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(25),
-    y: THREE.MathUtils.randFloatSpread(25),
+    x: THREE.MathUtils.randFloatSpread(20),
+    y: THREE.MathUtils.randFloatSpread(20),
     z: THREE.MathUtils.randFloatSpread(25),
   }));
+  useFrame(({ clock }) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.x = Math.cos(clock.elapsedTime * 0.2);
+      groupRef.current.rotation.y = Math.cos(clock.elapsedTime * 0.2);
+    }
+  });
   return(
     <group ref={groupRef} >
               {positions.map((position, index) => (
@@ -315,8 +346,12 @@ function Stars(){
 function Events() {
 return(
   <Canvas gl={{ antialias: false }} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}>
+   
     <Items/>
     <Stars/>
+    <EffectComposer disableNormalPass>
+    <Bloom mipmapBlur radius={5} luminanceThreshold={1} />
+      </EffectComposer>
   </Canvas>
 );
 };

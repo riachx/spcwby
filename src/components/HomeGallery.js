@@ -85,6 +85,15 @@ function Images() {
   )
 }
 
+function Logo(){
+ 
+
+return (
+    <Image href= {'www.net.com'} scale={[1,0.41,1]} position={[-2,2.5,1.1]} url={"https://i.imgur.com/y60zwOw.jpg"}></Image>
+    
+)
+}
+
 export default function HomeGallery() {
   const arrow = {
     position: 'fixed',
@@ -101,13 +110,17 @@ export default function HomeGallery() {
         <ScrollControls damping={0.8} pages={14.5}>
           <Scroll>
             <Images />
+            
+            
             <Html>
 
             <div style={arrow}>↓
             </div>
            
           </Html>
+          {/*<Logo/>*/}
           </Scroll>
+          
           {/*<Scroll html>
             <h1 style={{ position: 'absolute', top: '390vh', left: '15em', fontSize: '90vw', fontFamily: 'Arial, sans-serif', padding: '20px' ,transform: 'scaleX(0.6)'}}></h1>
             <h1 style={{ position: 'absolute', top: '250vh', left: '60vw' , fontFamily: 'Arial, sans-serif', padding: '20px' ,transform: 'scaleX(1.4)'}}></h1>
