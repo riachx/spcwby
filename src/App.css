@@ -173,6 +173,8 @@ body{
   width:100%
 
 }
+
+
 /* stretch text */
 span.stretch {
   display:inline-block;
@@ -182,6 +184,7 @@ span.stretch {
   -o-transform:scale(2,1); /* Opera */
   transform:scale(2,1); /* W3C */
 }
+
 
 @media (max-width: 580px) {
   .nav-links a{

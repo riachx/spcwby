@@ -10,8 +10,9 @@ This project was made with React Three Fiber.
 - HTML, CSS, JavaScript + React Three Fiber 
 - Smooth scrolling in each section
 - Visually stunning postprocessing effects
-- Responsive interface with media queries
+- Responsive interface using media queries
 - Site maintains optimal performance with low-res images and optimized geometry
+- Advanced camera capabilities 
 
 
 ## Using this repo:

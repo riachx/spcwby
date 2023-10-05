@@ -1,7 +1,7 @@
 {
   "name": "spcwby",
   "version": "0.1.0",
-  "homepage": "https://riachx.github.io/",
+  "homepage": "https://spcwby.com/",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.77.0",
