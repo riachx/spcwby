@@ -1,5 +1,5 @@
-# Space Cowboy 3D Website 
-This project was made with React Three Fiber.
+# [**Space Cowboy 3D Website**](https://spcwby.com)
+This website was made with React Three Fiber.
 
 ![alt text](https://i.imgur.com/ggFo497.png)
 ![alt text](https://i.imgur.com/msGNfAh.png)
