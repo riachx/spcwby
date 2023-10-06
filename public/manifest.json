@@ -1,8 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Spcwby",
+  "name": "Space Cowboy",
   "icons": [
-    
+    {
+      "src": "https://i.imgur.com/pPfiK49.png",  
+      "sizes": "192x192",
+      "type": "image/png"
+    }
   ],
   "start_url": ".",
   "display": "standalone",
