@@ -6,7 +6,7 @@ import { proxy, useSnapshot } from 'valtio'
 import { Bloom, EffectComposer, N8AO, TiltShift2 } from "@react-three/postprocessing"
 import '../App.css';
 
-{/* Base credit to drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
+{/* Base credit to Paul Henschel, drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
 
 const damp = THREE.MathUtils.damp
 const material = new THREE.LineBasicMaterial({ color: 'white' })
@@ -14,8 +14,6 @@ const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 
 const state = proxy({
   clicked: null,
   urls: [
-    // Replace these with your Imgur image URLs
-
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/tjqjd4x.jpg',
@@ -47,8 +45,10 @@ const state = proxy({
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/GoL8szI.jpg',
     'https://i.imgur.com/wgrh1an.jpg',
-    // Add more Imgur image URLs as needed
+    // Add more event image URLs as needed - note text offset
   ],
+  urlsUpcoming:['https://i.imgur.com/GoL8szI.jpg',
+  'https://i.imgur.com/wgrh1an.jpg',],
 });
 
 function Minimap() {
@@ -58,10 +58,6 @@ function Minimap() {
   const { height } = useThree((state) => state.viewport)
   useFrame((state, delta) => {
     ref.current.children.forEach((child, index) => {
-      // Give me a value between 0 and 1
-      //   starting at the position of my item
-      //   ranging across 4 / total length
-      //   make it a sine, so the value goes from 0 to 1 to 0.
       const y = scroll.curve(index / urls.length - 1.5 / urls.length, 4 / urls.length)
       child.scale.y = damp(child.scale.y, 0.2 + y / 6, 8, 8, delta)
     })
@@ -74,6 +70,8 @@ function Minimap() {
     </group>
   )
 }
+
+
 
 function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   const ref = useRef()
@@ -137,7 +135,7 @@ function Items({ w = 3, gap = 0.2 }) {
       <Minimap />
       <Scroll>
         {urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */}
-        
+       
         <Text
           position={[-1.6,0,1.2]}
           fontSize={width/10}
@@ -149,33 +147,34 @@ function Items({ w = 3, gap = 0.2 }) {
           UP{'\n'}COM{'\n'}ING 
         </Text>
 
-        <Text
+        {/*<Text
           position={[0.8,-0.9,2.8]}
           fontSize={0.07}
           color="white"
-          /*fix*/
+          
           font="fonts/HankenGrotesk-Light.ttf"
           letterSpacing="-0.02"
           lineHeight= "1"
           scale={[1.4,1,1]}
         >
           SCROLL RIGHT
-        </Text>
+        </Text>*/}
 
-
-        <Text
+        {/*<Text
           position={[0.8,0.9,2.8]}
           fontSize={0.07}
-          /*fix*/
+          
           font="fonts/HankenGrotesk-Light.ttf"
           letterSpacing="-0.02"
           scale={[1.4,1,1]}
         >
           STAY TUNED . . .
-        </Text>
+        </Text>*/}
 
         {/*Placeholder question mark image. Put upcoming event here */}
-        <Image url={'https://i.imgur.com/uKlaQV8.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]} ></Image>
+        {/*<Image url={'https://i.imgur.com/uKlaQV8.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]} ></Image>*/}
+        <Image url={'https://i.imgur.com/tXr2SI1.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]}></Image>
+        
         
         <Text
           position={[5,0.2,2]}
@@ -280,38 +279,6 @@ function Items({ w = 3, gap = 0.2 }) {
         </Scroll>
     </ScrollControls>
   )
-}
-
-function Logo(){
-  const textRef = useRef(); // Create a reference to the 3D object
-  // Use the useFrame hook to update the rotation
-
-  const { width } = useThree((state) => state.viewport)
-  let s;
-
-  if (width > 4.8) {
-    s = 0.3
-
-  } else {
-    s = 0.2
-  }
-
-
-  useFrame(({ camera }) => {
-  
-  if (textRef.current) {
-    // Match the X-axis rotation of the object with the camera's X-axis rotation
-    textRef.current.rotation.z = camera.rotation.z;
-    textRef.current.rotation.y = camera.rotation.y;
-    textRef.current.rotation.x = camera.rotation.x;
-
-  }
-});
-return (
-  <group ref={textRef}>
-    <Image href= {'www.net.com'} scale={[2.43,1,1]} position={[-7.5,7,-6]} url={"https://i.imgur.com/y60zwOw.jpg"}></Image>
-    </group>
-)
 }
 
 function Stars(){
