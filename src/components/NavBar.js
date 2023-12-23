@@ -13,15 +13,23 @@ function NavBar() {
         <p>ELECTRONIC MUSIC</p>
         <p>+ ART COLLECTIVE</p>
         </div>
-      <ul className="nav-links">
+
+      <div className="logo-spcwby">
         <li>
-          <a href="/">HOME</a>
+          <a href="/">SPCWBY</a>
         </li>
+      </div>
+        
+      <ul className="nav-links">
+        
         <li>
           <a href="/events">EVENTS</a>
         </li>
         <li>
           <a href="/gallery">GALLERY</a>
+        </li>
+        <li>
+          <a href="/artists">ARTISTS</a>
         </li>
       </ul>
     </nav>

@@ -11,6 +11,7 @@ const Footer = () => {
     alignItems: 'center', // Vertically center content
     justifyContent: 'center', // Horizontally center content
     
+    
   };
 
   const logoStyle = {

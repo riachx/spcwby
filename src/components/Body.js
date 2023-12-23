@@ -15,7 +15,7 @@
 import '../App.css';
 import React, { useState, useRef } from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
-import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls, Float } from "@react-three/drei"
+import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls, Float, MeshTransmissionMaterial } from "@react-three/drei"
 import { Html, OrbitControls, Text } from "@react-three/drei";
 import * as THREE from 'three';
 import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
@@ -177,9 +177,10 @@ function Body() {
     fontSize: '42px',
   };
 
+
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
-  const starCount = 400;
+  const starCount = 500;
   // Generate random positions for stars
   const positions = [...Array(starCount)].map(() => ({
     x: THREE.MathUtils.randFloatSpread(10),
@@ -219,6 +220,13 @@ function Body() {
               <meshBasicMaterial map={texture} side={THREE.BackSide} />
             </mesh>
 
+                {/* white torus */}
+            <mesh rotation={[11, 0.2, 0]} position={[0, 0, 0]} scale={[2.8,2.1,1]}>
+              <torusGeometry args={[1.1, 0.06, 16, 100]} />
+              <meshStandardMaterial transparent={true} opacity={0.15}  emissive={"red"} emissiveIntensity={1} color={"red"}/>
+              {/*<MeshTransmissionMaterial transparent={true} opacity={0.2} backside backsideThickness={1} thickness={1} />*/}
+            </mesh>
+
             {/* Pink torus */}
             <mesh rotation={[11, 0, 0]} position={[0, -5.4, 0]}>
               <torusGeometry args={[4, 0.1, 16, 100]} />
@@ -235,7 +243,7 @@ function Body() {
             <group ref={groupRef2} position={[0, -10, 10]}>
               {positions_lower.map((position, index) => (
                 <mesh key={index} position={[position.x, position.y, position.z]}>
-                  <sphereGeometry args={[0.005, 2, 2]} />
+                  <sphereGeometry args={[0.005, , 2]} />
                   <meshBasicMaterial color="#ffffff" />
                 </mesh>
               ))}
@@ -243,7 +251,7 @@ function Body() {
             <group ref={groupRef2} position={[0, -40, 10]}>
               {positions_lower.map((position, index) => (
                 <mesh key={index} position={[position.x, position.y, position.z]}>
-                  <sphereGeometry args={[0.005, 2, 2]} />
+                  <sphereGeometry args={[0.008, 1, 2]} />
                   <meshBasicMaterial color="#ffffff" />
                 </mesh>
               ))}

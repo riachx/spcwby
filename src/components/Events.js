@@ -7,7 +7,7 @@ import { Bloom, EffectComposer, N8AO, TiltShift2 } from "@react-three/postproces
 import '../App.css';
 
 {/* Base credit to Paul Henschel, drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
-
+let imagesAdded = 1;
 const damp = THREE.MathUtils.damp
 const material = new THREE.LineBasicMaterial({ color: 'white' })
 const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.5, 0), new THREE.Vector3(0, 0.5, 0)])
@@ -18,6 +18,8 @@ const state = proxy({
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/tjqjd4x.jpg',
+
+    'https://i.imgur.com/tXr2SI1.jpg',
     'https://i.imgur.com/2h9YkW0.jpg',
     'https://i.imgur.com/iUzPOYA.jpg',
     'https://i.imgur.com/1cX2G9g.jpg',
@@ -129,6 +131,7 @@ function Items({ w = 3, gap = 0.2 }) {
   const { urls } = useSnapshot(state)
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
+  imagesAdded = imagesAdded+0.9;
   
   return (
     <ScrollControls horizontal damping={0.1} pages={(width - xW + (urls.length) * xW) / width}>
@@ -172,8 +175,8 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>*/}
 
         {/*Placeholder question mark image. Put upcoming event here */}
-        {/*<Image url={'https://i.imgur.com/uKlaQV8.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]} ></Image>*/}
-        <Image url={'https://i.imgur.com/tXr2SI1.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]}></Image>
+        <Image url={'https://i.imgur.com/uKlaQV8.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]} ></Image>
+        {/*<Image url={'https://i.imgur.com/tXr2SI1.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]}></Image>*/}
         
         
         <Text
@@ -211,8 +214,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         
-
-        <Image scale={[7,4,1]} position={[47.2,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[47.2+imagesAdded,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
         
         <Text
           position={[2,0,2.7]}
@@ -226,7 +228,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[51.7,0,0]}
+          position={[51.3+imagesAdded,0,0]}
           fontSize={0.8}
           color="white"
           font="fonts/arial-black.woff"
@@ -237,7 +239,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[48.7,-1.1,1]}
+          position={[48.7+imagesAdded,-1.1,1]}
           fontSize={0.25}
           color="white"
           /*fix*/
@@ -252,9 +254,9 @@ function Items({ w = 3, gap = 0.2 }) {
 
 
 
-        <Image scale={[7,4,1]} position={[86.5,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[86.5+imagesAdded,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
         <Text
-          position={[90,0,0]}
+          position={[89.8+imagesAdded,0,0]}
           fontSize={0.8}
           color="white"
           font="fonts/arial-black.woff"
@@ -265,7 +267,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
         
         <Text
-          position={[86.5,-1.1,1]}
+          position={[86.5+imagesAdded,-1.1,1]}
           fontSize={0.25}
           color="white"
           /*fix*/
@@ -282,13 +284,13 @@ function Items({ w = 3, gap = 0.2 }) {
 }
 
 function Stars(){
-  const starCount = 400;
+  const starCount = 600;
 
   const groupRef = React.useRef();
   // Generate random positions for stars
   const positions = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(20),
-    y: THREE.MathUtils.randFloatSpread(20),
+    x: THREE.MathUtils.randFloatSpread(30),
+    y: THREE.MathUtils.randFloatSpread(10),
     z: THREE.MathUtils.randFloatSpread(25),
   }));
   useFrame(({ clock }) => {
