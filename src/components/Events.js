@@ -5,7 +5,6 @@ import { ScrollControls, Text, Scroll, useScroll, Image, useIntersect, OrbitCont
 import { proxy, useSnapshot } from 'valtio'
 import { Bloom, EffectComposer, N8AO, TiltShift2 } from "@react-three/postprocessing"
 
-import { MediaQuery } from 'react-responsive';
 import '../App.css';
 
 {/* Base credit to Paul Henschel, drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
