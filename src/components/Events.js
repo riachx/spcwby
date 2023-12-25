@@ -4,6 +4,8 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { ScrollControls, Text, Scroll, useScroll, Image, useIntersect, OrbitControls} from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
 import { Bloom, EffectComposer, N8AO, TiltShift2 } from "@react-three/postprocessing"
+
+import { MediaQuery } from 'react-responsive';
 import '../App.css';
 
 {/* Base credit to Paul Henschel, drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
@@ -132,7 +134,21 @@ function Items({ w = 3, gap = 0.2 }) {
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
   imagesAdded = imagesAdded+0.9;
-  
+  let mobile = false;
+  let upcom_pos = 0;
+  let upcom_scale = 0;
+
+  if(width < 7 && width > 4.2){
+    mobile = true;
+    upcom_pos = 0.65;
+    console.log("yup");
+  } else if (width <= 4.2){
+    mobile = true;
+    upcom_pos = 1;
+    upcom_scale = 0.22;
+  }
+
+  console.log(width);
   return (
     <ScrollControls horizontal damping={0.1} pages={(width - xW + (urls.length) * xW) / width}>
       <Minimap />
@@ -140,8 +156,8 @@ function Items({ w = 3, gap = 0.2 }) {
         {urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]} url={url} />) /* prettier-ignore */}
        
         <Text
-          position={[-1.6,0,1.2]}
-          fontSize={width/10}
+          position={[-1.6 + upcom_pos,0,1.2]}
+          fontSize={width/10 + upcom_scale}
           font="fonts/MerseyCowboy.otf"
           letterSpacing="0.08"
           scale={[1.4,1,1]}
@@ -214,7 +230,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         
-        <Image scale={[7,4,1]} position={[47.2+imagesAdded,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[50.2,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
         
         <Text
           position={[2,0,2.7]}
@@ -228,7 +244,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[51.3+imagesAdded,0,0]}
+          position={[54.3,0,0]}
           fontSize={0.8}
           color="white"
           font="fonts/arial-black.woff"
@@ -239,7 +255,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[48.7+imagesAdded,-1.1,1]}
+          position={[49.7,-1.1,1]}
           fontSize={0.25}
           color="white"
           /*fix*/
@@ -254,9 +270,9 @@ function Items({ w = 3, gap = 0.2 }) {
 
 
 
-        <Image scale={[7,4,1]} position={[86.5+imagesAdded,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[90,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
         <Text
-          position={[89.8+imagesAdded,0,0]}
+          position={[89.8,0,0]}
           fontSize={0.8}
           color="white"
           font="fonts/arial-black.woff"
@@ -267,7 +283,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
         
         <Text
-          position={[86.5+imagesAdded,-1.1,1]}
+          position={[90,-1.1,1]}
           fontSize={0.25}
           color="white"
           /*fix*/
@@ -278,6 +294,8 @@ function Items({ w = 3, gap = 0.2 }) {
         >
           events
         </Text>
+
+       
         </Scroll>
     </ScrollControls>
   )
