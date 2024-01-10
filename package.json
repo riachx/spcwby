@@ -1,24 +1,30 @@
 {
   "name": "spcwby",
   "version": "0.1.0",
+  "homepage": "https://riachx.github.io/",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.77.0",
     "@react-three/fiber": "^8.13.3",
+    "@react-three/postprocessing": "^2.14.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/three": "^0.152.1",
     "bootstrap": "^5.3.0",
+    "leva": "^0.9.35",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "react-three-fiber": "^6.0.13",
     "three": "^0.153.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
   }
 }
