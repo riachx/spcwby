@@ -23,7 +23,7 @@
     "react-three-fiber": "^6.0.13",
     "styled-components": "^6.0.8",
     "three": "^0.153.0",
-    "valtio": "^1.11.2",
+    "valtio": "^1.13.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
