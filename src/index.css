@@ -31,10 +31,6 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 
-.root{
-  width:100vw;
-  height: fit-content;
-}
 /* Set core body defaults */
 body {
   display:flex;

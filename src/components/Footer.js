@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   const footerStyle = {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Arial, sans-serif',
     fontSize: '20px',
     backgroundColor: '#000',
     color: '#fff',
@@ -10,6 +10,7 @@ const Footer = () => {
     display: 'flex',
     alignItems: 'center', // Vertically center content
     justifyContent: 'center', // Horizontally center content
+    
     
   };
 
@@ -23,9 +24,9 @@ const Footer = () => {
 
   return (
     <footer style={footerStyle}>
-      <span>SPACECOWBOY INC.</span>
+      <span>SPACECOWBOY INC. </span>
       <a href={"https://www.instagram.com/spacecowboy.inc"} target="_blank" rel="noopener noreferrer" style={{padding:'0%'}}>
-        <img src="./photos/instagram-logo.png" alt="Logo" style={logoStyle} />
+        <img src="https://i.imgur.com/0Gj1oMS.png" alt="Logo" style={logoStyle} />
       </a>
     </footer>
   );

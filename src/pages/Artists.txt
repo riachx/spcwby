@@ -1,0 +1,13 @@
+import React from 'react';
+
+const Artistss = () => {
+  return (
+    <div className="artists">
+      <h2>About Us</h2>
+      <p>Welcome to our art collective nestled in the vibrant heart of Santa Cruz!</p>
+      {/* Add your content here */}
+    </div>
+  );
+};
+
+export default Artists;
