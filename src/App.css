@@ -204,8 +204,7 @@ body{
 
 .bodySection{
   height:100%;
-  width:100%
-
+  width:100%;
 }
 
 .headshot {
@@ -218,31 +217,31 @@ body{
 .card-grid {
   
   display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, 200px);
-  padding-top:15%;
+  row-gap: 1rem;
+  /*column-gap: 4rem;*/
+  grid-template-columns: repeat(auto-fit, 270px);
   padding-left:13%;
+  margin-top:55vh;
   padding-right:5%;
  }
  
  .card {
-  background-color: #f0f0f0;
   font-size: 24px;
   font-family: Roboto, sans-serif;
-  height: 200px;
-  width: 200px;
-  padding:20px;
+  /*height: 250px;
+  width: 250px;*/
   margin:auto;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   border-radius: 8px;
-  background: #D9D9D9;
-  box-shadow: 5px 5px 3px 0px #FFF inset;
+  box-shadow: 3px 3px 3px 0px rgb(57, 55, 55) inset;
  }
+
  .card:hover{
-  background: #d1ccc9;
+  background: #524e4e;
  }
+
 
  
  @media (max-width: 770px) {
@@ -250,7 +249,7 @@ body{
   .card-grid {
     
   grid-template-columns: repeat(auto-fit, 300px);
-    padding-top:30%;
+    padding-top:50%;
   }
   .card{
     width:300px;
@@ -269,7 +268,6 @@ body{
     padding-top: 90px;
     margin: auto;
 
-    
   }
   
   .logo-spcwby{
@@ -287,7 +285,7 @@ body{
   .card-grid {
     
   grid-template-columns: repeat(auto-fit, 260px);
-    padding-top:30%;
+    padding-top:55%;
   }
   .card{
     width:250px;
@@ -302,7 +300,7 @@ body{
   .card-grid {
     
   grid-template-columns: repeat(auto-fit, 260px);
-    padding-top:30%;
+    padding-top:60%;
   }
   .card{
     width:390px;

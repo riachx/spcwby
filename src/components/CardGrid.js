@@ -1,37 +1,21 @@
+// CardGrid.js
 import React from 'react';
+import '../App.css'; // Import the stylesheet
 
-class Card extends React.Component {
-  render() {
-    const { imageSrc1, imageSrc2, onClick } = this.props;
-    return (
-      <div className="card" onClick={onClick}>
-        <img src={imageSrc1} alt="Artist 1" />
-        <img className="headshot" src={imageSrc2} alt="Artist 2" />
-      </div>
-    );
-  }
-}
+const CardGrid = ({ images }) => {
+  const handleCardClick = (image) => {
+    console.log("Clicked on image:", image);
+  };
 
-class CardGrid extends React.Component {
-  handleCardClick(index) {
-    alert(`Card ${index + 1} clicked!`);
-  }
-
-  render() {
-    const { cards } = this.props;
-    return (
-      <div className="card-grid">
-        {cards.map((images, index) => (
-          <Card
-            key={index}
-            imageSrc1={images[0]}
-            imageSrc2={images[1]}
-            onClick={() => this.handleCardClick(index)}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="card-grid"> {/* Use the card-grid class */}
+      {images.map((image, index) => (
+        <div key={index} onClick={() => handleCardClick(image)} className="card"> {/* Use the card class */}
+          <img src={image.src} alt={image.alt} style={{ width: '100%', height: 'auto' }} />
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default CardGrid;
