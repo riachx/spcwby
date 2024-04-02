@@ -20,6 +20,7 @@ const state = proxy({
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/tjqjd4x.jpg',
 
+    'https://i.imgur.com/qChhnHL.jpg',
     'https://i.imgur.com/tXr2SI1.jpg',
     'https://i.imgur.com/2h9YkW0.jpg',
     'https://i.imgur.com/iUzPOYA.jpg',
@@ -48,6 +49,7 @@ const state = proxy({
     'https://i.imgur.com/tjqjd4x.jpg',
     'https://i.imgur.com/GoL8szI.jpg',
     'https://i.imgur.com/wgrh1an.jpg',
+    ,
     // Add more event image URLs as needed - note text offset
   ],
   urlsUpcoming:['https://i.imgur.com/GoL8szI.jpg',
@@ -192,7 +194,8 @@ function Items({ w = 3, gap = 0.2 }) {
         {/*Placeholder question mark image. Put upcoming event here */}
         {/*<Image url={'https://i.imgur.com/uKlaQV8.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]} ></Image>*/}
         
-        <Image url={'https://i.imgur.com/qChhnHL.jpg'} position={[0.8, 0, 2.8]} scale={[1.42857, 2, 0]}></Image>
+        {/*'https://i.imgur.com/qChhnHL.jpg'*/} 
+        <Image url={'https://i.imgur.com/6ITXWrg.jpg'} position={[0.8, 0, 2.8]} scale={[2, 2, 0]}></Image>
         
         
         <Text
@@ -230,7 +233,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         
-        <Image scale={[7,4,1]} position={[50.2,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[53.2,-0.2,0]} url={'https://i.imgur.com/UCfPWTM.jpg'}></Image>
         
         <Text
           position={[2,0,2.7]}
@@ -244,7 +247,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[54.3,0,0]}
+          position={[58.3,0,0]}
           fontSize={0.8}
           color="white"
           font="fonts/arial-black.woff"
@@ -255,7 +258,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
 
         <Text
-          position={[49.7,-1.1,1]}
+          position={[53.7,-1.1,1]}
           fontSize={0.25}
           color="white"
           /*fix*/
@@ -270,9 +273,9 @@ function Items({ w = 3, gap = 0.2 }) {
 
 
 
-        <Image scale={[7,4,1]} position={[90,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
+        <Image scale={[7,4,1]} position={[93,-0.2,0]} url={'https://i.imgur.com/w9bayj5.jpg'}></Image>
         <Text
-          position={[89.8,0,0]}
+          position={[95.8,0,0]}
           fontSize={0.8}
           color="white"
           font="fonts/arial-black.woff"
@@ -283,7 +286,7 @@ function Items({ w = 3, gap = 0.2 }) {
         </Text>
         
         <Text
-          position={[90,-1.1,1]}
+          position={[92,-1.1,1]}
           fontSize={0.25}
           color="white"
           /*fix*/

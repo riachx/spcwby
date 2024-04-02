@@ -13,7 +13,7 @@
 // take this hue shift into consideration.
 
 import '../App.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, Suspense } from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls, Float, MeshTransmissionMaterial } from "@react-three/drei"
 import { Html, OrbitControls, Text } from "@react-three/drei";
@@ -35,6 +35,13 @@ function Image({ c = new THREE.Color(), ...props }) {
   return <ImageImpl ref={ref} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)} {...props} />
 }
 
+function Loader() {
+  return (
+    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <h1 style={{color:'black'}}>Loading...</h1>
+    </div>
+  );
+}
 // returns all images
 function Images() {
   const { width, height, camera } = useThree((state) => state.viewport)
@@ -101,6 +108,35 @@ function Images() {
   )
 }
 
+const AboutText = ({ position, color, fontSize, font, fontWeight, anchorX, anchorY, text, opacity }) => {
+ const textRef = useRef();
+  useFrame(({ camera }) => {
+    if (textRef.current) {
+      textRef.current.rotation.z = camera.rotation.z;
+      textRef.current.rotation.y = camera.rotation.y;
+      textRef.current.rotation.x = camera.rotation.x;
+
+    }
+  });
+
+  return (
+    <group ref={textRef}>
+      <Text
+        position={position}
+        color={color}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+        font={font}
+        anchorX={anchorX}
+        anchorY={anchorY}
+        opacity={opacity}
+      >
+        {text}
+      </Text>
+    </group>
+  );
+};
+
 function ShapeBlue({ children, color, ...props }) {
   const { width } = useThree((state) => state.viewport)
   let s;
@@ -164,8 +200,6 @@ const SpcwbyModel = () => {
   );
 };
 
-
-
 function Body() {
 
   // scrollable arrow
@@ -193,11 +227,13 @@ function Body() {
     z: THREE.MathUtils.randFloatSpread(40),
   }));
   const texture = useLoader(TextureLoader, 'https://i.imgur.com/py50lUS.jpg');
- 
+  
   return (
     <div style={{ width: "100%", height: "100%" }}>
+      
       <Canvas className="canvas" gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}>
 
+      
         <Environment files="./hdr/misty2.hdr" />
 
         <OrbitControls autoRotate enablePan={false} enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
@@ -258,8 +294,8 @@ function Body() {
             </group>
 
             {/* Space Cowboy 3D Model */}
+        
             <SpcwbyModel />
-
             {/* Inner pink glowing sphere */}
             <Shapepink color={[100, 100, 0]} position={[0, 0, 0]} >
               <sphereGeometry args={[0.6, 20, 15]} />
@@ -271,9 +307,45 @@ function Body() {
             <ShapeBlue color={[5, 0, 0]} position={[0, 0, 0]} >
               <sphereGeometry args={[2.1, 20, 25]} />
             </ShapeBlue>
-                
+            
+           {/*
+           <AboutText
+              position={[-2, 2, 1]}
+              color="white"
+              fontSize={0.15}
+              font=""
+              anchorX="center"
+              fontWeight={100}
+              anchorY="middle"
+              text="WEST COAST"
+              opacity={0.5}
+            />
+            <AboutText
+              position={[-2, 1.85, 1]}
+              color="white"
+              fontSize={0.15}
+              font=""
+              anchorX="center"
+              fontWeight={100}
+              anchorY="middle"
+              text="ELECTRONIC MUSIC"
+              opacity={0.5}
+            />
+            <AboutText
+              position={[-2, 1.7, 1]}
+              color="white"
+              fontSize={0.15}
+              font=""
+              anchorX="center"
+              fontWeight={100}
+              anchorY="middle"
+              text="ART COLLECTIVE"
+              opacity={0.5}
+            />*/}
+
             {/* Gallery at bottom */}
             <Images />
+            
 
             {/* Scrolling arrow */}
             <Html>
@@ -290,7 +362,7 @@ function Body() {
           <HueSaturation hue={4.191} />
           <BrightnessContrast brightness={-0.1} />
         </EffectComposer>
-
+        
       </Canvas>
     </div>
   );

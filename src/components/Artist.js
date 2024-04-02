@@ -1,15 +1,15 @@
 import React from 'react';
 import CardGrid from './CardGrid';
 
-function TwinklingStar() {
+function TwinklingStar({ marginLeft, marginTop}) {
   return (
     <div style={{
       zIndex: '-5',
       position: 'absolute',
       display: 'flex',
       justifyContent: 'center',
-      marginLeft: '25vh',
-      marginTop: '13vh'
+      marginLeft: marginLeft,
+      marginTop: marginTop
     }}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1274.73 657.71" width="60vh">
         <style>
@@ -56,6 +56,8 @@ class Artist extends React.Component {
       { src: 'https://i.imgur.com/gzCQqjq.png', alt: 'Camilo' },
       { src: 'https://i.imgur.com/YyfoXui.png', alt: 'TreeState' },
       { src: 'https://i.imgur.com/wHyPBs1.png', alt: 'Sterling' },
+      { src: 'https://i.imgur.com/8sDhXK4.png', alt: 'KJ' },
+      
       
       
       
@@ -63,7 +65,7 @@ class Artist extends React.Component {
     ];
     return (
       <div className="Artist">
-        <div style={{ zIndex: '-5', position: 'absolute', display: 'flex', justifyContent: 'center', marginLeft:'10vh', marginTop: '-40vh'}}>
+        <div className = "MeetUs" style={{ zIndex: '-5', position: 'absolute', display: 'flex', justifyContent: 'center', marginLeft:'10vh', marginTop: '-40vh'}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1274.73 657.71"  width="100vh" 
@@ -92,8 +94,9 @@ class Artist extends React.Component {
               />
             </g>
           </svg>
-                <TwinklingStar></TwinklingStar>
-        </div >
+                <TwinklingStar marginLeft='20vh' marginTop='13vh'></TwinklingStar>
+                <TwinklingStar marginLeft='-110vh' marginTop='2vh'></TwinklingStar>
+       </div >
         <div><CardGrid images={images} /></div>
         
       </div>

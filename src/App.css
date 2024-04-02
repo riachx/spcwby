@@ -141,6 +141,7 @@ canvas{
 }
 
 
+
 .low-opacity {
   color: white;
   opacity: 40%;
@@ -292,6 +293,15 @@ body{
     height:250px;
   }
 
+
+  .MeetUs{
+    transform: scaleX(100%);
+    left:-90px;
+    bottom:30%;
+  }
+  .card-grid{
+    margin-top:0vh;
+  }
  
  }
 
@@ -307,6 +317,14 @@ body{
     height:390px;
   }
 
+  .MeetUs{
+    transform: scaleX(100%);
+    left:-90px;
+    bottom:30%;
+  }
+  .card-grid{
+    margin-top:5vh;
+  }
 
  
  }
@@ -344,6 +362,15 @@ span.stretch {
   .logo-spcwby{
     position:relative;
   }
+
+.MeetUs{
+  transform: scaleX(100%);
+  left:-90px;
+  bottom:30%;
+}
+.card-grid{
+  margin-top:15vh;
+}
   
 }
 /* App.css */
@@ -351,6 +378,17 @@ span.stretch {
   text-align: center;
   margin-top: 280px;
   color:white;
+}
+
+@media (max-width: 520px) {
+  .MeetUs{
+    transform: scaleX(80%);
+    left:-150px;
+    bottom:30%;
+  }
+  .card-grid{
+    margin-top:15vh;
+  }
 }
 
 
@@ -381,6 +419,14 @@ span.stretch {
 
   h1 {
     font-size: 40px !important;
+  }
+  .MeetUs{
+    transform: scaleX(70%);
+    left:-185px;
+    bottom:30%;
+  }
+  .card-grid{
+    margin-top:35vh;
   }
 
   #root
