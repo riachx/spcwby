@@ -19,5 +19,4 @@ This website was made with React Three Fiber.
 To use this repository, run the following commands inside the repo directory: \
 `Install Node.js and npm` \
 `npm install` \
-`npm install valtio ` \
 `npm run start` 
