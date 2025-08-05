@@ -1,13 +1,17 @@
+/**
+ * 
+ * Base credit to Paul Henschel, drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  
+ */
+
 import * as THREE from 'three'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { ScrollControls, Text, Scroll, useScroll, Image, useIntersect, OrbitControls} from '@react-three/drei'
+import { ScrollControls, Text, Scroll, useScroll, Image} from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
-import { Bloom, EffectComposer, N8AO, TiltShift2 } from "@react-three/postprocessing"
+import { Bloom, EffectComposer} from "@react-three/postprocessing"
 
 import '../App.css';
 
-{/* Base credit to Paul Henschel, drcmda at https://codesandbox.io/s/horizontal-tiles-l4klb?file=/src/App.js:0-3575  */}
 let imagesAdded = 1;
 const damp = THREE.MathUtils.damp
 const material = new THREE.LineBasicMaterial({ color: 'white' })
@@ -136,16 +140,12 @@ function Items({ w = 3, gap = 0.2 }) {
   const { width } = useThree((state) => state.viewport)
   const xW = w + gap
   imagesAdded = imagesAdded+0.9;
-  let mobile = false;
   let upcom_pos = 0;
   let upcom_scale = 0;
 
   if(width < 7 && width > 4.2){
-    mobile = true;
     upcom_pos = 0.65;
-    console.log("yup");
   } else if (width <= 4.2){
-    mobile = true;
     upcom_pos = 1;
     upcom_scale = 0.22;
   }

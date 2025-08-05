@@ -10,10 +10,8 @@ body,
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    /*background-image: url("./background.png");*/
     background-color:black;
     background-size: 100%;
-    /*background: radial-gradient(at 50% 100%, #2727c3 40%, #06068f 80%, #020263 100%);*/
 }
 .bg {
   position: absolute;
@@ -198,9 +196,6 @@ canvas{
   justify-content: space-between;
   align-items: center;
   background: black;
-}
-body{
-  background-image: url("./background.png");
 }
 
 .bodySection{
@@ -439,10 +434,8 @@ span.stretch {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    /*background-image: url("./background.png");*/
     background-color:black;
     background-size: 100%;
-    /*background: radial-gradient(at 50% 100%, #2727c3 40%, #06068f 80%, #020263 100%);*/
 }
   
 }

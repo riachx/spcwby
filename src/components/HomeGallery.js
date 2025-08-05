@@ -16,8 +16,6 @@ function Image({ c = new THREE.Color(), ...props }) {
   return <ImageImpl ref={ref} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)} {...props} />
 }
 
-
-
 function Images() {
   const { width, height } = useThree((state) => state.viewport)
   const data = useScroll()
@@ -85,14 +83,6 @@ function Images() {
   )
 }
 
-function Logo(){
- 
-
-return (
-    <Image href= {'www.net.com'} scale={[1,0.41,1]} position={[-2,2.5,1.1]} url={"https://i.imgur.com/y60zwOw.jpg"}></Image>
-    
-)
-}
 
 export default function HomeGallery() {
   const arrow = {

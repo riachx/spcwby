@@ -13,9 +13,9 @@
 // take this hue shift into consideration.
 
 import '../App.css';
-import React, { useState, useRef, Suspense } from 'react';
+import React, { useState, useRef } from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
-import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls, Float, MeshTransmissionMaterial } from "@react-three/drei"
+import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls} from "@react-three/drei"
 import { Html, OrbitControls, Text } from "@react-three/drei";
 import * as THREE from 'three';
 import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
@@ -35,30 +35,11 @@ function Image({ c = new THREE.Color(), ...props }) {
   return <ImageImpl ref={ref} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)} {...props} />
 }
 
-function Loader() {
-  return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <h1 style={{color:'black'}}>Loading...</h1>
-    </div>
-  );
-}
 // returns all images
 function Images() {
-  const { width, height, camera } = useThree((state) => state.viewport)
+  const { width, height } = useThree((state) => state.viewport)
   const data = useScroll()
   const group = useRef()
-
-  let p_image1;
-  let p_image2;
-
-  if (width > 7) {
-    p_image1 = 5;
-    p_image2 = 5;
-
-  } else {
-    p_image1 = 5;
-    p_image2 = 5;
-  }
 
   // Match the X-axis rotation of the object with the camera's X-axis rotation
   useFrame(({ camera }) => {
@@ -279,7 +260,7 @@ function Body() {
             <group ref={groupRef2} position={[0, -10, 10]}>
               {positions_lower.map((position, index) => (
                 <mesh key={index} position={[position.x, position.y, position.z]}>
-                  <sphereGeometry args={[0.005, , 2]} />
+                  <sphereGeometry args={[0.005, 1, 2]} />
                   <meshBasicMaterial color="#ffffff" />
                 </mesh>
               ))}

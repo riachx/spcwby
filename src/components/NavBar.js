@@ -1,12 +1,11 @@
 import React from 'react';
 import '../stylesheets/NavBar.css';
 
-const Navbar2 = () => {
+const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <a href = "/"><img src= 'https://i.imgur.com/kVp6nXu.png'></img></a>
-        {/*<h3>SPCWBY</h3>*/}
       </div>
       <div className="navbar-links">
         <ul>
@@ -19,4 +18,4 @@ const Navbar2 = () => {
   );
 };
 
-export default Navbar2;
+export default NavBar;
