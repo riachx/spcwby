@@ -4,7 +4,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Html, Preload, ScrollControls, Scroll, useScroll, Image as ImageImpl } from '@react-three/drei'
 import '../App.css';
 
-{/* Base credit to drcmda at https://codesandbox.io/s/yjhzv?file=/src/App.js:2286-2579  */}
+/* Base credit to drcmda at https://codesandbox.io/s/yjhzv?file=/src/App.js:2286-2579  */
 
 
 function Image({ c = new THREE.Color(), ...props }) {

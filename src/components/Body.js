@@ -16,7 +16,7 @@ import '../App.css';
 import React, { useState, useRef } from 'react';
 import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls} from "@react-three/drei"
-import { Html, OrbitControls, Text } from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import * as THREE from 'three';
 import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
@@ -89,34 +89,6 @@ function Images() {
   )
 }
 
-const AboutText = ({ position, color, fontSize, font, fontWeight, anchorX, anchorY, text, opacity }) => {
- const textRef = useRef();
-  useFrame(({ camera }) => {
-    if (textRef.current) {
-      textRef.current.rotation.z = camera.rotation.z;
-      textRef.current.rotation.y = camera.rotation.y;
-      textRef.current.rotation.x = camera.rotation.x;
-
-    }
-  });
-
-  return (
-    <group ref={textRef}>
-      <Text
-        position={position}
-        color={color}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        font={font}
-        anchorX={anchorX}
-        anchorY={anchorY}
-        opacity={opacity}
-      >
-        {text}
-      </Text>
-    </group>
-  );
-};
 
 function ShapeBlue({ children, color, ...props }) {
   const { width } = useThree((state) => state.viewport)
