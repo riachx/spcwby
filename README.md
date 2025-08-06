@@ -15,8 +15,57 @@ This website was made with React Three Fiber.
 - Advanced camera capabilities 
 
 
-## Using this repo:
-To use this repository, run the following commands inside the repo directory: \
-`Install Node.js and npm` \
-`npm install` \
-`npm run start` 
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **npm** or **yarn**
+- Modern web browser with WebGL support
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/spcwby.git
+   cd spcwby
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm start
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+### Build for Production
+
+
+```bash
+# Create optimized production build
+npm run build
+
+# Serve locally to test
+npm install -g serve
+serve -s build
+```
+
+## 🔧 Tech Stack
+
+### Core Technologies
+- **React** - UI framework
+- **React Three Fiber** - 3D graphics and animations
+- **Three.js** - WebGL 3D library
+- **React Router** - Client-side routing
+
+### 3D & Graphics
+- **@react-three/drei** - Useful helpers for R3F
+- **@react-three/postprocessing** - Post-processing effects
+- **three-stdlib** - Three.js extensions
