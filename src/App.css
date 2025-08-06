@@ -18,43 +18,7 @@ body,
   background: radial-gradient(at 50% 100%, #873740 0%, #272730 40%, #171720 80%, #070710 100%);
 }
 
-/* fonts.css */
-@font-face {
-  font-family: 'Sprayerz';
-  src: local('Sprayerz'), url('./fonts/Sprayerz.ttf') format('truetype');
-  /* You may add more font properties like font-weight, font-style if needed */
-}
 
-
-h1,h2,h3,h4,h5 {
-  font-family: 'Sprayerz', serif;
-  color: #fff;
-  margin-bottom: 32px !important;
-}
-
-h1 {
-  font-size: 60px !important;
-  color: white;
-  font-family: 'Sprayerz';
-  letter-spacing: 5px;
-
-  animation-name: example;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-}
-
-h2 {
-  font-size: 40px !important;
-  color: white;
-}
-
-a {
-  list-style: none;
-  color:white;
-  font-weight: 300;
-  
-  text-decoration: none;
-}
 
 .right{
   float:right;
@@ -183,13 +147,7 @@ canvas{
 }
 
 
-@keyframes example {
-  0%   {transform: rotate(10deg);}
-  25%  {transform: rotate(0deg);}
-  50%  {transform: rotate(-10deg);}
-  75%  {transform: rotate(0deg);}
-  100% {transform: rotate(10deg);}
-}
+
 
 /* footer */
 .footer {
@@ -412,9 +370,6 @@ span.stretch {
     font-size:30px;
   }
 
-  h1 {
-    font-size: 40px !important;
-  }
   .MeetUs{
     transform: scaleX(70%);
     left:-185px;

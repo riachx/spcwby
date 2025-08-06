@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import './styles/typography.css';
 import Body from './components/Body';
 import Gallery from './components/HomeGallery';
 import Events from './components/Events';

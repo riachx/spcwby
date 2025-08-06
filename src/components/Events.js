@@ -9,6 +9,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { ScrollControls, Text, Scroll, useScroll, Image} from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
 import { Bloom, EffectComposer} from "@react-three/postprocessing"
+import { pastEventImages, upcomingEventImages } from '../data/eventImages'
 
 import '../App.css';
 
@@ -18,48 +19,9 @@ const material = new THREE.LineBasicMaterial({ color: 'white' })
 const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.5, 0), new THREE.Vector3(0, 0.5, 0)])
 const state = proxy({
   clicked: null,
-  urls: [
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-
-    'https://i.imgur.com/qChhnHL.jpg',
-    'https://i.imgur.com/tXr2SI1.jpg',
-    'https://i.imgur.com/2h9YkW0.jpg',
-    'https://i.imgur.com/iUzPOYA.jpg',
-    'https://i.imgur.com/1cX2G9g.jpg',
-    'https://i.imgur.com/aVkwn6R.jpg',
-    'https://i.imgur.com/DqwnEOp.jpg',
-    'https://i.imgur.com/wnWMXri.jpg',
-    'https://i.imgur.com/671XFqM.jpg',
-    'https://i.imgur.com/3rGON50.jpg',
-    'https://i.imgur.com/cu2027a.jpg',
-    'https://i.imgur.com/MSu1S4R.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/5dN7lHI.jpg',
-    'https://i.imgur.com/4ezhjOZ.jpg',
-    'https://i.imgur.com/itwyxCa.jpg',
-    'https://i.imgur.com/JHdgbR9.jpg',
-    'https://i.imgur.com/w6zYvsP.jpg',
-    'https://i.imgur.com/ZXgOZcF.jpg',
-    'https://i.imgur.com/XxoPcub.jpg',
-    'https://i.imgur.com/LHFcsJP.jpg',
-    'https://i.imgur.com/YBRTKRS.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/tjqjd4x.jpg',
-    'https://i.imgur.com/GoL8szI.jpg',
-    'https://i.imgur.com/wgrh1an.jpg',
-    ,
-    // Add more event image URLs as needed - note text offset
-  ],
-  urlsUpcoming:['https://i.imgur.com/GoL8szI.jpg',
-  'https://i.imgur.com/wgrh1an.jpg',],
+  urls: pastEventImages,
+  urlsUpcoming: upcomingEventImages,
 });
-
 
 function Minimap() {
   const ref = useRef()
@@ -80,8 +42,6 @@ function Minimap() {
     </group>
   )
 }
-
-
 
 function Item({ index, position, scale, c = new THREE.Color(), ...props }) {
   const ref = useRef()
