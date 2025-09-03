@@ -1,24 +1,33 @@
 import React from 'react';
-import CardGrid from './CardGrid';
 import { artistImages } from '../../data/artistImages';
-import TwinklingStar from '../TwinklingStar';
 import MeetUsLogo from '../MeetUsLogo';
+import TwinklingStar from '../TwinklingStar';
+import CardGrid from './CardGrid';
 
 class Artist extends React.Component {
   render() {
-
     const images = artistImages;
     return (
       <div className="Artist">
-        <div className="MeetUs" style={{ zIndex: '-5', position: 'absolute', display: 'flex', justifyContent: 'center', marginLeft: '10vh', marginTop: '-40vh' }}>
+        <div
+          className="MeetUs"
+          style={{
+            zIndex: '-5',
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            marginLeft: '10vh',
+            marginTop: '-40vh',
+          }}
+        >
           <MeetUsLogo />
-          <TwinklingStar marginLeft='20vh' marginTop='13vh'></TwinklingStar>
-          <TwinklingStar marginLeft='-110vh' marginTop='2vh'></TwinklingStar>
-        </div >
-        <div><CardGrid images={images} /></div>
-
+          <TwinklingStar marginLeft="20vh" marginTop="13vh"></TwinklingStar>
+          <TwinklingStar marginLeft="-110vh" marginTop="2vh"></TwinklingStar>
+        </div>
+        <div>
+          <CardGrid images={images} />
+        </div>
       </div>
-
     );
   }
 }

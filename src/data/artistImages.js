@@ -13,7 +13,7 @@ export const artistImages = [
   { src: 'https://i.imgur.com/gzCQqjq.png', alt: 'Camilo' },
   { src: 'https://i.imgur.com/YyfoXui.png', alt: 'TreeState' },
   { src: 'https://i.imgur.com/wHyPBs1.png', alt: 'Sterling' },
-  { src: 'https://i.imgur.com/8sDhXK4.png', alt: 'KJ' }
+  { src: 'https://i.imgur.com/8sDhXK4.png', alt: 'KJ' },
 ];
 
-export default artistImages; 
+export default artistImages;

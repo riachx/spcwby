@@ -1,131 +1,116 @@
 /* Navbar.css */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 70px;
-    color: white;
-    
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 70px;
+  color: white;
+}
+
+.navbar-logo {
+  max-width: 110px; /* Adjust the width as needed */
+  opacity: 0.7;
+}
+
+.navbar-logo:hover {
+  width: 120px; /* Adjust the width as needed */
+  opacity: 0.3;
+}
+
+.navbar-logo a {
+  right: 10%;
+}
+
+.navbar-links ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-stretch: 193%;
+}
+
+.navbar-links ul li {
+  margin-right: 40px;
+}
+
+.navbar-links ul li a {
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.navbar-links ul li a:hover {
+  text-decoration: underline;
+  color: rgb(198, 201, 207);
+}
+
+@media (max-width: 630px) {
   .navbar-logo {
-    max-width: 110px; /* Adjust the width as needed */
-    opacity: 0.7;
+    position: absolute;
+    top: 30px;
+    display: block;
+    margin-left: 25%;
+  }
+  .navbar-links {
+    padding-top: 70px;
+    padding-left: 15%;
+  }
+}
 
+@media (max-width: 530px) {
+  .navbar-logo {
+    position: absolute;
+    top: 30px;
+    display: block;
+    margin-left: 25%;
   }
 
-  .navbar-logo:hover {
-    width: 120px; /* Adjust the width as needed */
-    opacity: 0.3;
+  .navbar-links {
+    padding-top: 60px;
+    padding-left: 5%;
+  }
+}
+
+@media (max-width: 460px) {
+  .navbar-logo {
+    position: absolute;
+    top: 30px;
+    display: block;
+    margin-left: 25%;
   }
 
-  .navbar-logo a{
-    right:10%;
+  .navbar-links {
+    padding-top: 60px;
+    padding-left: 0%;
   }
-  
-  .navbar-links ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
- font-stretch: 193%;
-    
-  }
-  
-  .navbar-links ul li {
-    margin-right:40px
-    
-  }
-  
-  .navbar-links ul li a {
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    color: white;
-    
+}
+
+@media (max-width: 400px) {
+  .navbar-logo {
+    position: absolute;
+    top: 30px;
+    display: block;
+    margin-left: 25%;
   }
 
-  .navbar-links ul li a:hover {
-    text-decoration: underline;
-    color: rgb(198, 201, 207);
-    
+  .navbar-links {
+    padding-top: 60px;
+  }
+  .navbar {
+    padding: 20px 50px;
+  }
+}
+
+@media (max-width: 370px) {
+  .navbar-logo {
+    position: absolute;
+    top: 30px;
+    display: block;
+    margin-left: 25%;
   }
 
-
-  @media (max-width: 630px) {
-    .navbar-logo {
-        position: absolute;
-        top: 30px;
-        display:block;
-        margin-left: 25%;
-    }
-    .navbar-links {
-        padding-top: 70px;
-        padding-left: 15%;
-    }
-
+  .navbar {
+    padding: 20px 20px;
   }
-
-  @media (max-width: 530px) {
-
-    .navbar-logo {
-        position: absolute;
-        top: 30px;
-        display:block;
-        margin-left: 25%;
-    }
-
-    .navbar-links {
-        padding-top: 60px;
-        padding-left: 5%;
-    }
-    
-  }
-
-  @media (max-width: 460px) {
-
-    .navbar-logo {
-        position: absolute;
-        top: 30px;
-        display:block;
-        margin-left: 25%;
-    }
-
-    .navbar-links {
-        padding-top: 60px;
-        padding-left: 0%;
-    }
-
-  }
-
-  @media (max-width: 400px) {
-
-    .navbar-logo {
-        position: absolute;
-        top: 30px;
-        display:block;
-        margin-left: 25%;
-    }
-
-    .navbar-links {
-        padding-top: 60px;
-        
-    }
-    .navbar{
-        padding: 20px 50px;
-    }
-  }
-
-  @media (max-width: 370px) {
-
-    .navbar-logo {
-        position: absolute;
-        top: 30px;
-        display:block;
-        margin-left: 25%;
-    }
-
-    .navbar{
-        padding: 20px 20px;
-    }
-  }
+}

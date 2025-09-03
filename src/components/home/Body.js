@@ -1,45 +1,48 @@
-// IMPORTANT NOTICE: This hue of this scene is offset in a 
+// IMPORTANT NOTICE: This hue of this scene is offset in a
 // postprocessing filter called HueSaturation.
 // Any images or objects with color or must be offset
 // to achieve the correct color.
 //
-// Ex: the traffic cone image is technically cyan, and offset 
+// Ex: the traffic cone image is technically cyan, and offset
 // by the HueSaturation to achieve an orange color.
 //
-// This is implemented because of the emissive limitations 
+// This is implemented because of the emissive limitations
 // of three.js.
 //
 // Please be aware that any modifications to this behavior should
 // take this hue shift into consideration.
 
 import '../../App.css';
-import React from 'react';
+import { Environment, Scroll, ScrollControls } from '@react-three/drei';
+import { Html, OrbitControls } from '@react-three/drei';
 import { Canvas, extend, useLoader } from '@react-three/fiber';
-import { Environment, Scroll, ScrollControls} from "@react-three/drei"
-import { Html, OrbitControls } from "@react-three/drei";
+import {
+  HueSaturation,
+  Bloom,
+  BrightnessContrast,
+  EffectComposer,
+  Vignette,
+} from '@react-three/postprocessing';
+import React from 'react';
 import * as THREE from 'three';
-import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
-import { UnrealBloomPass } from 'three-stdlib'
 import { TextureLoader } from 'three';
-import EventImages from './HomeImages'
-import SpcwbyModel from '../shapes/SpcwbyModel'
-import ShapeBlue from '../shapes/ShapeBlue'
-import ShapePink from '../shapes/ShapePink'
+import { UnrealBloomPass } from 'three-stdlib';
+import ShapeBlue from '../shapes/ShapeBlue';
+import ShapePink from '../shapes/ShapePink';
+import SpcwbyModel from '../shapes/SpcwbyModel';
+import EventImages from './HomeImages';
 
 extend({ OrbitControls, UnrealBloomPass });
 
-
 function Body() {
-
   // scrollable arrow
   const arrow = {
     position: 'fixed',
     color: 'white',
-    left: '370px', 
+    left: '370px',
     top: '300px',
     fontSize: '42px',
   };
-
 
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
@@ -56,23 +59,31 @@ function Body() {
     z: THREE.MathUtils.randFloatSpread(40),
   }));
   const texture = useLoader(TextureLoader, 'https://i.imgur.com/py50lUS.jpg');
-  
-  return (
-    <div style={{ width: "100%", height: "100%" }}>
-      
-      <Canvas className="canvas" gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}>
 
-      
+  return (
+    <div style={{ width: '100%', height: '100%' }}>
+      <Canvas
+        className="canvas"
+        gl={{ alpha: true, clearColor: 'transparent', sortObjects: true }}
+      >
         <Environment files="./hdr/misty2.hdr" />
 
-        <OrbitControls autoRotate enablePan={false} enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
+        <OrbitControls
+          autoRotate
+          enablePan={false}
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
         <ScrollControls damping={1.2} pages={9}>
           <Scroll>
-
             {/* star field */}
-            <group ref={groupRef} >
+            <group ref={groupRef}>
               {positions.map((position, index) => (
-                <mesh key={index} position={[position.x, position.y, position.z]}>
+                <mesh
+                  key={index}
+                  position={[position.x, position.y, position.z]}
+                >
                   <sphereGeometry args={[0.005, 2, 2]} />
                   <meshBasicMaterial color="#ffffff" />
                 </mesh>
@@ -85,29 +96,54 @@ function Body() {
               <meshBasicMaterial map={texture} side={THREE.BackSide} />
             </mesh>
 
-                {/* White torus */}
-            <mesh rotation={[11, 0.2, 0]} position={[0, 0, 0]} scale={[2.8,2.1,1]}>
+            {/* White torus */}
+            <mesh
+              rotation={[11, 0.2, 0]}
+              position={[0, 0, 0]}
+              scale={[2.8, 2.1, 1]}
+            >
               <torusGeometry args={[1.1, 0.06, 16, 100]} />
-              <meshStandardMaterial transparent={true} opacity={0.15}  emissive={"red"} emissiveIntensity={1} color={"red"}/>
+              <meshStandardMaterial
+                transparent={true}
+                opacity={0.15}
+                emissive={'red'}
+                emissiveIntensity={1}
+                color={'red'}
+              />
               {/*<MeshTransmissionMaterial transparent={true} opacity={0.2} backside backsideThickness={1} thickness={1} />*/}
             </mesh>
 
             {/* Pink torus */}
             <mesh rotation={[11, 0, 0]} position={[0, -5.4, 0]}>
               <torusGeometry args={[4, 0.1, 16, 100]} />
-              <meshStandardMaterial toneMapped={false} emissive={"yellow"} emissiveIntensity={10} color={[0, 30, 0]} />
+              <meshStandardMaterial
+                toneMapped={false}
+                emissive={'yellow'}
+                emissiveIntensity={10}
+                color={[0, 30, 0]}
+              />
             </mesh>
 
             {/* Blue torus */}
             <mesh rotation={[11, 0, 0]} position={[0, -5.1, 0]}>
               <torusGeometry args={[4.2, 0.6, 16, 100]} />
-              <meshStandardMaterial transparent={true} opacity={0.55} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={"red"} />
+              <meshStandardMaterial
+                transparent={true}
+                opacity={0.55}
+                toneMapped={false}
+                emissive={'red'}
+                emissiveIntensity={10}
+                color={'red'}
+              />
             </mesh>
 
             {/* Star fields */}
             <group ref={groupRef2} position={[0, -10, 10]}>
               {positions_lower.map((position, index) => (
-                <mesh key={index} position={[position.x, position.y, position.z]}>
+                <mesh
+                  key={index}
+                  position={[position.x, position.y, position.z]}
+                >
                   <sphereGeometry args={[0.005, 1, 2]} />
                   <meshBasicMaterial color="#ffffff" />
                 </mesh>
@@ -115,7 +151,10 @@ function Body() {
             </group>
             <group ref={groupRef2} position={[0, -40, 10]}>
               {positions_lower.map((position, index) => (
-                <mesh key={index} position={[position.x, position.y, position.z]}>
+                <mesh
+                  key={index}
+                  position={[position.x, position.y, position.z]}
+                >
                   <sphereGeometry args={[0.008, 1, 2]} />
                   <meshBasicMaterial color="#ffffff" />
                 </mesh>
@@ -123,21 +162,21 @@ function Body() {
             </group>
 
             {/* Space Cowboy 3D Model */}
-        
+
             <SpcwbyModel />
             {/* Inner pink glowing sphere */}
-            <ShapePink color={[100, 100, 0]} position={[0, 0, 0]} >
+            <ShapePink color={[100, 100, 0]} position={[0, 0, 0]}>
               <sphereGeometry args={[0.6, 20, 15]} />
             </ShapePink>
 
             <ambientLight intensity={0.2} />
 
             {/* Outer blue glowing sphere */}
-            <ShapeBlue color={[5, 0, 0]} position={[0, 0, 0]} >
+            <ShapeBlue color={[5, 0, 0]} position={[0, 0, 0]}>
               <sphereGeometry args={[2.1, 20, 25]} />
             </ShapeBlue>
-            
-           {/*
+
+            {/*
            <AboutText
               position={[-2, 2, 1]}
               color="white"
@@ -174,12 +213,10 @@ function Body() {
 
             {/* Gallery at bottom */}
             <EventImages />
-            
 
             {/* Scrolling arrow */}
             <Html>
-              <div style={arrow}>↓
-              </div>
+              <div style={arrow}>↓</div>
             </Html>
           </Scroll>
         </ScrollControls>
@@ -191,10 +228,9 @@ function Body() {
           <HueSaturation hue={4.191} />
           <BrightnessContrast brightness={-0.1} />
         </EffectComposer>
-        
       </Canvas>
     </div>
   );
-};
+}
 
 export default Body;

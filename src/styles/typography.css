@@ -1,48 +1,63 @@
 /* fonts.css */
 @font-face {
-    font-family: 'Sprayerz';
-    src: local('Sprayerz'), url('../assets/fonts/Sprayerz.ttf') format('truetype');
-  }
-  
-  
-  h1,h2,h3,h4,h5 {
-    font-family: 'Sprayerz', serif;
-    color: #fff;
-    margin-bottom: 32px !important;
-  }
-  
-  h1 {
-    font-size: 60px !important;
-    color: white;
-    font-family: 'Sprayerz';
-    letter-spacing: 5px;
-  
-    animation-name: example;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-  }
-  
-  h2 {
-    font-size: 40px !important;
-    color: white;
-  }
-  
-  a {
-    list-style: none;
-    color:white;
-    font-weight: 300;
-    
-    text-decoration: none;
-  }
+  font-family: 'Sprayerz';
+  src:
+    local('Sprayerz'),
+    url('../assets/fonts/Sprayerz.ttf') format('truetype');
+}
 
-  h1 {
-    font-size: 40px !important;
-  }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Sprayerz', serif;
+  color: #fff;
+  margin-bottom: 32px !important;
+}
 
-  @keyframes example {
-    0%   {transform: rotate(10deg);}
-    25%  {transform: rotate(0deg);}
-    50%  {transform: rotate(-10deg);}
-    75%  {transform: rotate(0deg);}
-    100% {transform: rotate(10deg);}
+h1 {
+  font-size: 60px !important;
+  color: white;
+  font-family: 'Sprayerz';
+  letter-spacing: 5px;
+
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+h2 {
+  font-size: 40px !important;
+  color: white;
+}
+
+a {
+  list-style: none;
+  color: white;
+  font-weight: 300;
+
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 40px !important;
+}
+
+@keyframes example {
+  0% {
+    transform: rotate(10deg);
   }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}

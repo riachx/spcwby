@@ -1,8 +1,8 @@
-import { Suspense} from 'react'
-import { Canvas} from '@react-three/fiber'
-import { Html, Preload, ScrollControls, Scroll } from '@react-three/drei'
+import { Html, Preload, ScrollControls, Scroll } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
 import '../../App.css';
-import GalleryImages from './GalleryImages'
+import GalleryImages from './GalleryImages';
 /* Base credit to drcmda at https://codesandbox.io/s/yjhzv?file=/src/App.js:2286-2579  */
 
 export default function HomeGallery() {
@@ -35,6 +35,5 @@ export default function HomeGallery() {
         <Preload />
       </Suspense>
     </Canvas>
-  )
+  );
 }
-

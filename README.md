@@ -57,6 +57,28 @@ npm install -g serve
 serve -s build
 ```
 
+### Linting
+
+```bash
+# Check code for issues
+npm run lint
+
+# Auto-fix most issues
+npm run lint:fix
+
+# Check code formatting  
+npm run prettier
+
+# Auto-fix formatting
+npm run prettier:fix
+
+# Fix both linting and formatting
+npm run format
+
+# Check everything (no fixes)
+npm run check
+```
+
 ## 🔧 Tech Stack
 
 ### Core Technologies
