@@ -22,7 +22,7 @@ function Stars() {
     <group ref={groupRef}>
       {positions.map((position, index) => (
         <mesh key={index} position={[position.x, position.y, position.z]}>
-          <sphereGeometry args={[0.005, 2, 2]} />
+          <sphereGeometry args={[0.005, 1, 2]} />
           <meshBasicMaterial color="#ffffff" />
         </mesh>
       ))}
