@@ -15,11 +15,11 @@
 import { Environment, Html, OrbitControls, Scroll, ScrollControls } from '@react-three/drei';
 import { Canvas, extend, useLoader } from '@react-three/fiber';
 import {
-    Bloom,
-    BrightnessContrast,
-    EffectComposer,
-    HueSaturation,
-    Vignette,
+  Bloom,
+  BrightnessContrast,
+  EffectComposer,
+  HueSaturation,
+  Vignette,
 } from '@react-three/postprocessing';
 import React from 'react';
 import * as THREE from 'three';
@@ -29,6 +29,7 @@ import '../../App.css';
 import ShapeBlue from '../shapes/ShapeBlue.jsx';
 import ShapePink from '../shapes/ShapePink.jsx';
 import SpcwbyModel from '../shapes/SpcwbyModel.jsx';
+import Torus from '../shapes/Torus.jsx';
 import EventImages from './HomeImages.jsx';
 
 extend({ OrbitControls, UnrealBloomPass });
@@ -95,46 +96,10 @@ function Body() {
               <meshBasicMaterial map={texture} side={THREE.BackSide} />
             </mesh>
 
-            {/* White torus */}
-            <mesh
-              rotation={[11, 0.2, 0]}
-              position={[0, 0, 0]}
-              scale={[2.8, 2.1, 1]}
-            >
-              <torusGeometry args={[1.1, 0.06, 16, 100]} />
-              <meshStandardMaterial
-                transparent={true}
-                opacity={0.15}
-                emissive={'red'}
-                emissiveIntensity={1}
-                color={'red'}
-              />
-              {/*<MeshTransmissionMaterial transparent={true} opacity={0.2} backside backsideThickness={1} thickness={1} />*/}
-            </mesh>
-
-            {/* Pink torus */}
-            <mesh rotation={[11, 0, 0]} position={[0, -5.4, 0]}>
-              <torusGeometry args={[4, 0.1, 16, 100]} />
-              <meshStandardMaterial
-                toneMapped={false}
-                emissive={'yellow'}
-                emissiveIntensity={10}
-                color={[0, 30, 0]}
-              />
-            </mesh>
-
-            {/* Blue torus */}
-            <mesh rotation={[11, 0, 0]} position={[0, -5.1, 0]}>
-              <torusGeometry args={[4.2, 0.6, 16, 100]} />
-              <meshStandardMaterial
-                transparent={true}
-                opacity={0.55}
-                toneMapped={false}
-                emissive={'red'}
-                emissiveIntensity={10}
-                color={'red'}
-              />
-            </mesh>
+            {/* Torus rings */}
+            <Torus type="white" />
+            <Torus type="pink" />
+            <Torus type="blue" />
 
             {/* Star fields */}
             <group ref={groupRef2} position={[0, -10, 10]}>

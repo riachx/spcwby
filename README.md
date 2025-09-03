@@ -57,6 +57,12 @@ npm install -g serve
 serve -s build
 ```
 
+### Deploying
+```bash
+npm run deploy
+```
+
+
 ### Linting
 
 ```bash
@@ -65,12 +71,6 @@ npm run lint
 
 # Auto-fix most issues
 npm run lint:fix
-
-# Check code formatting  
-npm run prettier
-
-# Auto-fix formatting
-npm run prettier:fix
 
 # Fix both linting and formatting
 npm run format
