@@ -1,7 +1,7 @@
 import { useScroll } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import React, { useRef } from 'react';
-import EventImage from './HomeImage';
+import EventImage from './HomeImage.jsx';
 
 // Returns all images
 function EventImages() {

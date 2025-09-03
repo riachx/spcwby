@@ -2,10 +2,10 @@ import { useScroll } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useRef } from 'react';
 import {
-  galleryImageData,
-  applyGalleryAnimations,
+    applyGalleryAnimations,
+    galleryImageData,
 } from '../../data/galleryImages';
-import GalleryImage from './GalleryImage';
+import GalleryImage from './GalleryImage.jsx';
 
 function GalleryImages() {
   const { width, height } = useThree(state => state.viewport);

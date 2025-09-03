@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Artists from './components/artists/Artist.jsx';
+import Events from './components/events/Events.jsx';
+import Gallery from './components/gallery/Gallery.jsx';
+import Body from './components/home/Body.jsx';
 import './styles/typography.css';
-import Artists from './components/artists/Artist';
-import Events from './components/events/Events';
-import Gallery from './components/gallery/Gallery';
-import Body from './components/home/Body';
 
 // Layout wrapper component for pages that need bodySection class
 function Layout({ children }) {

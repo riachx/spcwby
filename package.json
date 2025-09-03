@@ -34,11 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "prettier": "prettier --check src/**/*.{js,jsx,ts,tsx,json,css,md}",
-    "prettier:fix": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,md}",
-    "format": "npm run prettier:fix && npm run lint:fix",
-    "check": "npm run prettier && npm run lint"
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix"
   },
   "browserslist": {
     "production": [
@@ -53,12 +49,9 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "gh-pages": "^6.0.0",
-    "prettier": "^3.6.2"
+    "gh-pages": "^6.0.0"
   }
 }

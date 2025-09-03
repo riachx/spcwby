@@ -12,52 +12,51 @@
 // Please be aware that any modifications to this behavior should
 // take this hue shift into consideration.
 
-import '../../App.css';
-import { Environment, Scroll, ScrollControls } from '@react-three/drei';
-import { Html, OrbitControls } from '@react-three/drei';
+import { Environment, Html, OrbitControls, Scroll, ScrollControls } from '@react-three/drei';
 import { Canvas, extend, useLoader } from '@react-three/fiber';
 import {
-  HueSaturation,
-  Bloom,
-  BrightnessContrast,
-  EffectComposer,
-  Vignette,
+    Bloom,
+    BrightnessContrast,
+    EffectComposer,
+    HueSaturation,
+    Vignette,
 } from '@react-three/postprocessing';
 import React from 'react';
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import { UnrealBloomPass } from 'three-stdlib';
-import ShapeBlue from '../shapes/ShapeBlue';
-import ShapePink from '../shapes/ShapePink';
-import SpcwbyModel from '../shapes/SpcwbyModel';
-import EventImages from './HomeImages';
+import '../../App.css';
+import ShapeBlue from '../shapes/ShapeBlue.jsx';
+import ShapePink from '../shapes/ShapePink.jsx';
+import SpcwbyModel from '../shapes/SpcwbyModel.jsx';
+import EventImages from './HomeImages.jsx';
 
 extend({ OrbitControls, UnrealBloomPass });
 
+// Generate star positions once outside component to avoid re-creation
+const STAR_COUNT = 500;
+const generateStarPositions = (spread) => 
+  [...Array(STAR_COUNT)].map(() => ({
+    x: THREE.MathUtils.randFloatSpread(spread),
+    y: THREE.MathUtils.randFloatSpread(spread),
+    z: THREE.MathUtils.randFloatSpread(spread * 2),
+  }));
+
+const STAR_POSITIONS = generateStarPositions(10);
+const STAR_POSITIONS_LOWER = generateStarPositions(40);
+
 function Body() {
-  // scrollable arrow
-  const arrow = {
+  // Memoize arrow styles to prevent object recreation
+  const arrow = React.useMemo(() => ({
     position: 'fixed',
     color: 'white',
     left: '370px',
     top: '300px',
     fontSize: '42px',
-  };
+  }), []);
 
   const groupRef = React.useRef();
   const groupRef2 = React.useRef();
-  const starCount = 500;
-  // Generate random positions for stars
-  const positions = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(10),
-    y: THREE.MathUtils.randFloatSpread(10),
-    z: THREE.MathUtils.randFloatSpread(20),
-  }));
-  const positions_lower = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(40),
-    y: THREE.MathUtils.randFloatSpread(40),
-    z: THREE.MathUtils.randFloatSpread(40),
-  }));
   const texture = useLoader(TextureLoader, 'https://i.imgur.com/py50lUS.jpg');
 
   return (
@@ -79,9 +78,9 @@ function Body() {
           <Scroll>
             {/* star field */}
             <group ref={groupRef}>
-              {positions.map((position, index) => (
+              {STAR_POSITIONS.map((position, index) => (
                 <mesh
-                  key={index}
+                  key={`star-${index}`}
                   position={[position.x, position.y, position.z]}
                 >
                   <sphereGeometry args={[0.005, 2, 2]} />
@@ -139,9 +138,9 @@ function Body() {
 
             {/* Star fields */}
             <group ref={groupRef2} position={[0, -10, 10]}>
-              {positions_lower.map((position, index) => (
+              {STAR_POSITIONS_LOWER.map((position, index) => (
                 <mesh
-                  key={index}
+                  key={`star-lower-1-${index}`}
                   position={[position.x, position.y, position.z]}
                 >
                   <sphereGeometry args={[0.005, 1, 2]} />
@@ -150,9 +149,9 @@ function Body() {
               ))}
             </group>
             <group ref={groupRef2} position={[0, -40, 10]}>
-              {positions_lower.map((position, index) => (
+              {STAR_POSITIONS_LOWER.map((position, index) => (
                 <mesh
-                  key={index}
+                  key={`star-lower-2-${index}`}
                   position={[position.x, position.y, position.z]}
                 >
                   <sphereGeometry args={[0.008, 1, 2]} />

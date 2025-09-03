@@ -4,20 +4,20 @@
  */
 
 import {
+  Image,
+  Scroll,
   ScrollControls,
   Text,
-  Scroll,
   useScroll,
-  Image,
 } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import React, { useRef, useState } from 'react';
 import * as THREE from 'three';
 import { proxy, useSnapshot } from 'valtio';
-import { pastEventImages, upcomingEventImages } from '../../data/eventImages';
-import Stars from '../Stars';
 import '../../App.css';
+import { pastEventImages, upcomingEventImages } from '../../data/eventImages';
+import Stars from '../Stars.jsx';
 
 let imagesAdded = 1;
 const damp = THREE.MathUtils.damp;

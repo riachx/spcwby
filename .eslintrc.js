@@ -8,11 +8,8 @@ module.exports = {
   extends: [
     'react-app',
     'react-app/jest',
-    'plugin:prettier/recommended', // Must be last to override other configs
   ],
-  plugins: [
-    'prettier',
-  ],
+  plugins: [],
   rules: {
     // React specific rules
     'react/react-in-jsx-scope': 'off', // Not needed in React 17+
@@ -64,13 +61,7 @@ module.exports = {
     'jsx-a11y/alt-text': 'warn',
     'jsx-a11y/anchor-is-valid': 'warn',
 
-    // Prettier integration
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
+
   },
   settings: {
     react: {

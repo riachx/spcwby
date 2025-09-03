@@ -1,16 +1,15 @@
 import { useThree } from '@react-three/fiber';
+import React, { useMemo } from 'react';
 
-function ShapePink({ children, color, ...props }) {
+const ShapePink = React.memo(function ShapePink({ children, color, ...props }) {
   const { width } = useThree(state => state.viewport);
-  let s;
-  if (width > 4.8) {
-    s = 1;
-  } else {
-    s = 0.8;
-  }
+  // Memoize scale calculation to avoid recalculation on every render
+  const scale = useMemo(() => {
+    return width > 4.8 ? 1 : 0.8;
+  }, [width]);
 
   return (
-    <mesh scale={s} {...props}>
+    <mesh scale={scale} {...props}>
       {children}
       <meshStandardMaterial
         toneMapped={false}
@@ -20,6 +19,6 @@ function ShapePink({ children, color, ...props }) {
       />
     </mesh>
   );
-}
+});
 
 export default ShapePink;
