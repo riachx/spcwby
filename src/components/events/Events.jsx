@@ -15,9 +15,9 @@ import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import React, { useRef, useState } from 'react';
 import * as THREE from 'three';
 import { proxy, useSnapshot } from 'valtio';
-import '../../App.css';
 import { pastEventImages, upcomingEventImages } from '../../data/eventImages';
-import Stars from '../Stars.jsx';
+import '../../styles/App.css';
+import Stars from '../shapes/stars/Stars.jsx';
 
 let imagesAdded = 1;
 const damp = THREE.MathUtils.damp;

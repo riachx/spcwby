@@ -1,7 +1,7 @@
 import React from 'react';
 import { artistImages } from '../../data/artistImages';
 import MeetUsLogo from '../MeetUsLogo.jsx';
-import TwinklingStar from '../TwinklingStar.jsx';
+import TwinklingStar from '../shapes/stars/TwinklingStar.jsx';
 import CardGrid from './CardGrid.jsx';
 
 class Artist extends React.Component {

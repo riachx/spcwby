@@ -25,26 +25,15 @@ import React from 'react';
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import { UnrealBloomPass } from 'three-stdlib';
-import '../../App.css';
+import '../../styles/App.css';
 import ShapeBlue from '../shapes/ShapeBlue.jsx';
 import ShapePink from '../shapes/ShapePink.jsx';
 import SpcwbyModel from '../shapes/SpcwbyModel.jsx';
+import { LowerStarField, UpperStarField } from '../shapes/stars/StarField.jsx';
 import Torus from '../shapes/Torus.jsx';
 import EventImages from './HomeImages.jsx';
 
 extend({ OrbitControls, UnrealBloomPass });
-
-// Generate star positions once outside component to avoid re-creation
-const STAR_COUNT = 500;
-const generateStarPositions = (spread) => 
-  [...Array(STAR_COUNT)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(spread),
-    y: THREE.MathUtils.randFloatSpread(spread),
-    z: THREE.MathUtils.randFloatSpread(spread * 2),
-  }));
-
-const STAR_POSITIONS = generateStarPositions(10);
-const STAR_POSITIONS_LOWER = generateStarPositions(40);
 
 function Body() {
   // Memoize arrow styles to prevent object recreation
@@ -55,9 +44,6 @@ function Body() {
     top: '300px',
     fontSize: '42px',
   }), []);
-
-  const groupRef = React.useRef();
-  const groupRef2 = React.useRef();
   const texture = useLoader(TextureLoader, 'https://i.imgur.com/py50lUS.jpg');
 
   return (
@@ -77,18 +63,9 @@ function Body() {
         />
         <ScrollControls damping={1.2} pages={9}>
           <Scroll>
-            {/* star field */}
-            <group ref={groupRef}>
-              {STAR_POSITIONS.map((position, index) => (
-                <mesh
-                  key={`star-${index}`}
-                  position={[position.x, position.y, position.z]}
-                >
-                  <sphereGeometry args={[0.005, 2, 2]} />
-                  <meshBasicMaterial color="#ffffff" />
-                </mesh>
-              ))}
-            </group>
+
+            {/* Star field */}
+            <UpperStarField />
 
             {/* Spinning sphere with rave image */}
             <mesh position={[0, 0, 0]}>
@@ -101,33 +78,13 @@ function Body() {
             <Torus type="pink" />
             <Torus type="blue" />
 
-            {/* Star fields */}
-            <group ref={groupRef2} position={[0, -10, 10]}>
-              {STAR_POSITIONS_LOWER.map((position, index) => (
-                <mesh
-                  key={`star-lower-1-${index}`}
-                  position={[position.x, position.y, position.z]}
-                >
-                  <sphereGeometry args={[0.005, 1, 2]} />
-                  <meshBasicMaterial color="#ffffff" />
-                </mesh>
-              ))}
-            </group>
-            <group ref={groupRef2} position={[0, -40, 10]}>
-              {STAR_POSITIONS_LOWER.map((position, index) => (
-                <mesh
-                  key={`star-lower-2-${index}`}
-                  position={[position.x, position.y, position.z]}
-                >
-                  <sphereGeometry args={[0.008, 1, 2]} />
-                  <meshBasicMaterial color="#ffffff" />
-                </mesh>
-              ))}
-            </group>
+            {/* Lower star fields */}
+            <LowerStarField position={[0, -10, 10]} size={0.005} />
+            <LowerStarField position={[0, -40, 10]} size={0.008} />
 
             {/* Space Cowboy 3D Model */}
-
             <SpcwbyModel />
+
             {/* Inner pink glowing sphere */}
             <ShapePink color={[100, 100, 0]} position={[0, 0, 0]}>
               <sphereGeometry args={[0.6, 20, 15]} />

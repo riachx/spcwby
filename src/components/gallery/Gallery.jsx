@@ -1,7 +1,7 @@
 import { Html, Preload, Scroll, ScrollControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import '../../App.css';
+import '../../styles/App.css';
 import GalleryImages from './GalleryImages.jsx';
 /* Base credit to drcmda at https://codesandbox.io/s/yjhzv?file=/src/App.js:2286-2579  */
 

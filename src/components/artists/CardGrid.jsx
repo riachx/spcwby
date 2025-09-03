@@ -1,6 +1,6 @@
 // CardGrid.js
 import React from 'react';
-import '../../App.css';
+import '../../styles/App.css';
 
 const CardGrid = ({ images }) => {
   const handleCardClick = image => {
