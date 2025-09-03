@@ -12,146 +12,22 @@
 // Please be aware that any modifications to this behavior should
 // take this hue shift into consideration.
 
-import '../App.css';
-import React, { useState, useRef } from 'react';
-import { Canvas, extend, useThree, useFrame, useLoader } from '@react-three/fiber';
-import { Environment, useScroll, Image as ImageImpl, Scroll, ScrollControls} from "@react-three/drei"
+import '../../App.css';
+import React from 'react';
+import { Canvas, extend, useLoader } from '@react-three/fiber';
+import { Environment, Scroll, ScrollControls} from "@react-three/drei"
 import { Html, OrbitControls } from "@react-three/drei";
 import * as THREE from 'three';
 import { HueSaturation, Bloom, BrightnessContrast, EffectComposer, Vignette } from '@react-three/postprocessing'
 import { UnrealBloomPass } from 'three-stdlib'
 import { TextureLoader } from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import EventImages from './HomeImages'
+import SpcwbyModel from '../shapes/SpcwbyModel'
+import ShapeBlue from '../shapes/ShapeBlue'
+import ShapePink from '../shapes/ShapePink'
 
 extend({ OrbitControls, UnrealBloomPass });
 
-// allows for hover effects on an image
-function Image({ c = new THREE.Color(), ...props }) {
-  const ref = useRef()
-  const [hovered, hover] = useState(false)
-  useFrame(() => {
-    ref.current.material.color.lerp(c.set(hovered ? 'white' : '#ccc'), hovered ? 0.4 : 0.08)
-  })
-  return <ImageImpl ref={ref} onPointerOver={() => hover(true)} onPointerOut={() => hover(false)} {...props} />
-}
-
-// returns all images
-function Images() {
-  const { width, height } = useThree((state) => state.viewport)
-  const data = useScroll()
-  const group = useRef()
-
-  // Match the X-axis rotation of the object with the camera's X-axis rotation
-  useFrame(({ camera }) => {
-    if (group.current) {
-      group.current.rotation.z = camera.rotation.z;
-      group.current.rotation.y = camera.rotation.y;
-      group.current.rotation.x = camera.rotation.x;
-
-    }
-    // Adds zooming and grayscale effects when scrolling
-    group.current.children[0].material.zoom = 1 + data.range(1 / 3, 0.2 / 3) / 3
-    group.current.children[0].material.grayscale = 1 - data.range(1.6 / 3, 1 / 3)
-
-    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3
-    group.current.children[1].material.grayscale = 1 - data.range(1.65 / 3, 0.2 / 3)
-
-    group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 3
-
-    group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2
-    group.current.children[4].material.zoom = 1 + data.range(1.25 / 3, 1 / 3) / 1
-    group.current.children[5].material.zoom = 1 + data.range(1.8 / 3, 1 / 3) / 3
-    group.current.children[5].material.grayscale = 1 - data.range(1.6 / 3, 1 / 3)
-    group.current.children[6].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
-
-    group.current.children[7].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
-
-    group.current.children[8].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
-    group.current.children[8].material.grayscale = 1 - data.range(2.7 / 3, 0.5 / 3)
-    group.current.children[8].material.zoom = 1 + (1 - data.range(2 / 3, 1 / 3)) / 3
-
-
-  })
-
-  return (
-    <group ref={group}>
-      <Image position={[-width / 5, -height - 9, 0]} scale={[4.5, height, 1]} url="https://i.imgur.com/6EcFpIQ.jpg" />
-      <Image position={[-1, -height - 29.1, 3]} scale={[1.5, 1.9, 1]} url="https://i.imgur.com/EeDc7jA.jpg" />
-      <Image position={[width / 6, -height - 15 + width / 5, 1]} scale={4} url="https://i.imgur.com/R9O1MVg.jpg" />
-      <Image position={[2.0, -height - 29.1, 2]} scale={[1.3, 3, 1]} url="https://i.imgur.com/Df1sbBY.jpg" />
-      <Image position={[0.4, -height - 28.8, 2.5]} scale={[1.1, 3, 1]} url="https://i.imgur.com/K1f4x0h.jpg" />
-      <Image position={[-1.5, -height - 35, 0]} scale={[width / 1.5, height, 1]} url="https://i.imgur.com/d6GPiAP.jpg" />
-      <Image position={[0, -height * 2 - height / 4 - 11, 0]} scale={[width, height, 1]} url="https://i.imgur.com/w1L8AVL.jpg" />
-      <Image position={[width / 5, -height * 2 - height / 4 - 32, -1]} scale={[width / 2, height, 1]} url="https://i.imgur.com/35aCyWk.jpg" />
-      <Image position={[0, -height * 2 - height / 4 - 42, -1]} scale={[13, 9, 1]} url="https://i.imgur.com/ukBXU0M.jpg" />
-      <Image position={[-4, -height * 2 - height / 4 - 36, -1]} scale={5.5} url="https://i.imgur.com/Bj2qZdz.jpg" />
-    </group>
-  )
-}
-
-
-function ShapeBlue({ children, color, ...props }) {
-  const { width } = useThree((state) => state.viewport)
-  let s;
-  if (width > 4.8) {
-    s = 1
-  } else {
-    s = 0.8
-  }
-  return (
-
-    <mesh scale={s} {...props} >
-      {children}
-      <meshStandardMaterial transparent={true} opacity={0.5} toneMapped={false} emissive={"red"} emissiveIntensity={10} color={color} />
-    </mesh>
-  )
-}
-function Shapepink({ children, color, ...props }) {
-
-  const { width } = useThree((state) => state.viewport)
-  let s;
-  if (width > 4.8) {
-    s = 1
-  } else {
-    s = 0.8
-  }
-
-  return (
-    <mesh scale={s} {...props} >
-      {children}
-      <meshStandardMaterial toneMapped={false} emissive={"red"} emissiveIntensity={1} color={color} />
-    </mesh>
-  )
-}
-const SpcwbyModel = () => {
-  const obj = useLoader(GLTFLoader, './models/spcwbymodel.glb')
-  const modelRef = useRef(); 
-  const { width } = useThree((state) => state.viewport)
-  let s;
-
-  if (width > 4.8) {
-    s = 0.3
-
-  } else {
-    s = 0.2
-  }
-
-  // Allows for SpaceCowboy model to follow the camera
-  useFrame(({ camera }) => {
-    if (modelRef.current) {
-      modelRef.current.rotation.z = camera.rotation.z;
-      modelRef.current.rotation.y = camera.rotation.y;
-      modelRef.current.rotation.x = camera.rotation.x;
-
-    }
-  });
-  return (
-    <group ref={modelRef}>
-      <primitive object={obj.scene} position={[0.1, 0, 2.3]} scale={s} />
-      <meshStandardMaterial attach="material" args={[{ color: 0xffffff, emissive: "white", emissiveIntensity: 5 }]} />
-    </group>
-  );
-};
 
 function Body() {
 
@@ -209,7 +85,7 @@ function Body() {
               <meshBasicMaterial map={texture} side={THREE.BackSide} />
             </mesh>
 
-                {/* white torus */}
+                {/* White torus */}
             <mesh rotation={[11, 0.2, 0]} position={[0, 0, 0]} scale={[2.8,2.1,1]}>
               <torusGeometry args={[1.1, 0.06, 16, 100]} />
               <meshStandardMaterial transparent={true} opacity={0.15}  emissive={"red"} emissiveIntensity={1} color={"red"}/>
@@ -250,9 +126,9 @@ function Body() {
         
             <SpcwbyModel />
             {/* Inner pink glowing sphere */}
-            <Shapepink color={[100, 100, 0]} position={[0, 0, 0]} >
+            <ShapePink color={[100, 100, 0]} position={[0, 0, 0]} >
               <sphereGeometry args={[0.6, 20, 15]} />
-            </Shapepink>
+            </ShapePink>
 
             <ambientLight intensity={0.2} />
 
@@ -297,7 +173,7 @@ function Body() {
             />*/}
 
             {/* Gallery at bottom */}
-            <Images />
+            <EventImages />
             
 
             {/* Scrolling arrow */}

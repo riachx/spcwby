@@ -1,0 +1,22 @@
+/* Footer Component Styles */
+.footer {
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  background-color: #000;
+  color: #fff;
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 20px;
+  height: 20px;
+  margin-left: 0px;
+  padding: 0%;
+}
+
+.footer-link {
+  padding: 0%;
+} 

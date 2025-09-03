@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './styles/typography.css';
-import Body from './components/Body';
-import Gallery from './components/HomeGallery';
-import Events from './components/Events';
-import Artists from './components/Artist';
+import Body from './components/home/Body';
+import Gallery from './components/gallery/Gallery';
+import Events from './components/events/Events';
+import Artists from './components/artists/Artist';
 
 function Content() {
     const location = useLocation();

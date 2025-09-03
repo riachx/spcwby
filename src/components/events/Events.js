@@ -9,9 +9,9 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { ScrollControls, Text, Scroll, useScroll, Image} from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
 import { Bloom, EffectComposer} from "@react-three/postprocessing"
-import { pastEventImages, upcomingEventImages } from '../data/eventImages'
-
-import '../App.css';
+import { pastEventImages, upcomingEventImages } from '../../data/eventImages'
+import Stars from '../Stars'
+import '../../App.css';
 
 let imagesAdded = 1;
 const damp = THREE.MathUtils.damp
@@ -264,34 +264,6 @@ function Items({ w = 3, gap = 0.2 }) {
   )
 }
 
-function Stars(){
-  const starCount = 600;
-
-  const groupRef = React.useRef();
-  // Generate random positions for stars
-  const positions = [...Array(starCount)].map(() => ({
-    x: THREE.MathUtils.randFloatSpread(30),
-    y: THREE.MathUtils.randFloatSpread(10),
-    z: THREE.MathUtils.randFloatSpread(25),
-  }));
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.x = Math.cos(clock.elapsedTime * 0.2);
-      groupRef.current.rotation.y = Math.cos(clock.elapsedTime * 0.2);
-    }
-  });
-  return(
-    <group ref={groupRef} >
-              {positions.map((position, index) => (
-                <mesh key={index} position={[position.x, position.y, position.z]}>
-                  <sphereGeometry args={[0.005, 2, 2]} />
-                  <meshBasicMaterial color="#ffffff" />
-                </mesh>
-              ))}
-            </group>
-  )
-
-}
 
 function Events() {
 return(

@@ -1,6 +1,6 @@
 // CardGrid.js
 import React from 'react';
-import '../App.css'; // Import the stylesheet
+import '../../App.css';
 
 const CardGrid = ({ images }) => {
   const handleCardClick = (image) => {
@@ -8,9 +8,9 @@ const CardGrid = ({ images }) => {
   };
 
   return (
-    <div className="card-grid"> {/* Use the card-grid class */}
+    <div className="card-grid"> 
       {images.map((image, index) => (
-        <div key={index} onClick={() => handleCardClick(image)} className="card"> {/* Use the card class */}
+        <div key={index} onClick={() => handleCardClick(image)} className="card">
           <img src={image.src} alt={image.alt} style={{ width: '100%', height: 'auto' }} />
         </div>
       ))}
