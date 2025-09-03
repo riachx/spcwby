@@ -4,7 +4,7 @@ import '../../App.css';
 
 const CardGrid = ({ images }) => {
   const handleCardClick = image => {
-    console.log('Clicked on image:', image);
+    // Implement click logic here!
   };
 
   return (
