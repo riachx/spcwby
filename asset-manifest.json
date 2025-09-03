@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.09beb32b.css",
-    "main.js": "/static/js/main.2bb73f45.js",
+    "main.css": "/static/css/main.741e48fa.css",
+    "main.js": "/static/js/main.34f64b5f.js",
     "static/media/Sprayerz.ttf": "/static/media/Sprayerz.647d796f5b5466c6baf9.ttf",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.09beb32b.css",
-    "static/js/main.2bb73f45.js"
+    "static/css/main.741e48fa.css",
+    "static/js/main.34f64b5f.js"
   ]
 }
